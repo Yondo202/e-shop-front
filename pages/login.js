@@ -143,7 +143,7 @@ const Container = styled.div`
                             width: 100%;
                         }
                         &:focus ~ svg {
-                            color: ${props=>props.theme.buttonColor};
+                            color: ${props=>props.theme.mainColor};
                         }
                     }
                     .pass{
@@ -190,7 +190,7 @@ const Container = styled.div`
             }
             .Active{
                 color:#000000;
-                border-bottom: 2px solid ${props=>props.theme.buttonColor};
+                border-bottom: 2px solid ${props=>props.theme.mainColor};
             }
         }
     }

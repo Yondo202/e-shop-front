@@ -1,10 +1,11 @@
 import React from 'react'
+import Root from "@/core/Root";
 
 const cart = () => {
     return (
-        <div>
-            dumb
-        </div>
+        <Root>
+            dumbassaa
+        </Root>
     )
 }
 

@@ -18,10 +18,14 @@ const MenuTop = ({ menu, logo }) => {
                     <input className="myInp" placeholder="Хайх ..." />
                 </div>
                 <div className="menus">
-                        <div className="content">
-                            <span className="icon shop"></span>
-                            <div className="smtitle">Хэтэвч</div>
-                        </div>
+
+                        <Link href="/cart">
+                            <a className="content">
+                                <span className="icon shop"></span>
+                                <div className="smtitle">Хэтэвч</div>
+                            </a>
+                        </Link>
+
                         <Link href="/login">
                             <a className="content">
                                 <span className="icon login"></span>

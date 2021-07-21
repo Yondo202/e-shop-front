@@ -4,8 +4,6 @@ import styled from 'styled-components'
 
 const Header = ({ menu }) => {
 
-    console.log(`menusss`, menu);
-
     return (
         <Container>
             <div className="menusPar container-xl">
