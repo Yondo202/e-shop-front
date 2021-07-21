@@ -74,7 +74,7 @@ const Container = styled.div`
                 padding: 6px 10px;
                 align-self: flex-start;
                 .titles{
-                    width: 95%;
+                    width: 100%;
                     font-weight: 600;
                     color: ${props=>props.theme.textColor3};
                     font-size: ${props=>props.theme.fontSize2};
