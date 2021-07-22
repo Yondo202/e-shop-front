@@ -9,7 +9,6 @@ const Index = ({ data }) => {
     const [loaded, setLoaded] = useState(false);
     const [ products, setProducts ] = useState([]);
 
-
     useEffect(()=>{
         setLoaded(true);
         let arr = []
@@ -23,11 +22,10 @@ const Index = ({ data }) => {
         
         setProducts(arr);
     },[data?.id])
-
     return (
         <Root>
             {/* {loaded && <ResolveComponent data={Layout}/>} */}
-            <CategoryHome >
+            <CategoryHome data={data} >
                 <CatigoryCards title={data?.name} products={products} />
             </CategoryHome>
         </Root>
@@ -42,6 +40,7 @@ export async function getServerSideProps({params, req}){
          category_details{ id name slug
          products{ id name slug price bogino_tailbar image{ url } }
          } } } }` })
+
     if(res.data.data.pages?.length){
         return {props: {data: res.data.data.pages[0]}}
     }else{

@@ -9,8 +9,8 @@ const CatigoryCards = ({ title, products }) => {
             <div className="row">
                 {products.map((el,ind)=>{
                     return(
-                        <div className="col-md-3 col-sm-4 col-6">
-                            <InitialCard key={ind} center={true} data={el} catigory={true} />
+                        <div key={ind} className="col-md-3 col-sm-4 col-6">
+                            <InitialCard  center={true} data={el} catigory={true} />
                         </div>
                     )
                 })}

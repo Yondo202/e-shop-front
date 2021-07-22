@@ -37,7 +37,7 @@ const Container = styled.div`
             font-size: 14px;
             text-align: center;
             position: relative;
-            font-weight: 600;
+            font-weight: 500;
             padding:16px 0px 12px 0px;
             color: ${props=>props.theme.textColor2};
             // &:first-child{

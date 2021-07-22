@@ -1,33 +1,41 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import styled from 'styled-components'
-import MenuContext from '../miscs/ContextMenuProvider'
+import { MdKeyboardArrowRight } from "react-icons/md"
 
-
-const LeftMenu = () => {
-    const { headerMenu } = useContext(MenuContext);
-    const router = useRouter()
-    const { id, middle, detail } = router.query
-    const [ menuData, setMenuData ] = useState({});
-
-    useEffect(()=>{
-        setMenuData(...headerMenu?.filter(item=>item.slug===id))
-    },[id])
-    
-    // console.log(`headerMenu`, headerMenu);
-
-    // console.log(`id`, id);
-    // console.log(`middle`, middle);
-    // console.log(`detail`, detail);
+const LeftMenu = ({ data, route }) => {
 
     return (
         <Container>
-            <div className="title">Ангилал</div>
+            <div className="title">{data?.name}</div>
             <div className="CatigoryMenus">
-                {Test.map((el,ind)=>{
+                {data?.category_middles?.map((el,ind)=>{
                     return(
-                        <div key={ind} className="items"><Link href={router.asPath}><a className="Text">{el.name}</a></Link>  <span>({el.count})</span></div>
+                        <div key={ind} className="itemParent">
+                            <div className={`items ${route.middle===el.slug?`Active`:``}`}>
+                                <span className="svg"><MdKeyboardArrowRight /></span>
+                                <Link href={`/p/${route.id}/${el.slug}`}>
+                                    <a className={`Text`}>{el.name} </a>
+                                </Link>
+                                <span>({el.category_details?.length})</span>
+                            </div>
+
+                            {route.middle===el.slug?el.category_details.length?<div>
+                                    {el.category_details.map((item,index)=>{
+                                        return(
+                                            <div key={index} className={`items itemMiddle ${route.detail===item.slug?`Active`:``}`}>
+                                                <span className="svg">
+                                                    {/* <MdKeyboardArrowRight /> */}
+                                                </span>
+                                                <Link href={`/p/${route.id}/${route.middle}/${item.slug}`}>
+                                                    <a className="Text">{item.name} </a>
+                                                </Link>
+                                                {/* <span> ({el.products?.length})</span> */}
+                                            </div>
+                                        )
+                                    })}
+                                </div>:null:null}
+                        </div>
                     )
                 })}
             </div>
@@ -46,29 +54,57 @@ const Container = styled.div`
         font-weight: 500;
         font-size: 17px;
         padding: 15px 0px;
-        
     }
+
     .CatigoryMenus{
         color: #626c84;
-        .items{
-            border-bottom: 1px dashed #f1f1f1;
-            .Text{
-                text-decoration:none;
-                cursor: pointer;
-                /* color: #626c84; */
-                color: ${props=>props.theme.textColor2};
-                border-radius: 0;
-                padding: 10px 0;
-                display: inline-block;
-                font-weight: 400;
-                line-height: 24px;
-                transition: color 0.15s ease;
-                &:hover{
+        .itemParent{
+            .items{
+                display:flex;
+                align-items:center;
+                border-bottom: 1px dashed #f1f1f1;
+                .svg{
+                    transition:transform 0.3s ease;
+                    font-size:18px;
+                    width:18px;
+                    margin-right:8px;
+                }
+                .Text{
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    text-decoration:none;
+                    cursor: pointer;
+                    /* color: #626c84; */
+                    color: ${props=>props.theme.textColor2};
+                    border-radius: 0;
+                    padding: 10px 0;
+                    padding-right:8px;
+                    display: inline-block;
+                    font-weight: 400;
+                    line-height: 24px;
+                    transition: color 0.15s ease;
+                    &:hover{
+                        color: ${props=>props.theme.textColor};
+    
+                    }
+                }
+                
+            }
+            .Active{
+                .svg{
+                    transform: rotate(90deg);
+                }
+                .Text{
                     color: ${props=>props.theme.textColor};
-
+                    font-weight:500;
                 }
             }
+            .itemMiddle{
+                padding-left:18px;
+            }
         }
+        
     }
 `
 

@@ -70,6 +70,7 @@ const Container = styled.div`
                 }
             }
             .textPar{
+                width:100%;
                 background-color: #ffffff;
                 padding: 6px 10px;
                 align-self: flex-start;

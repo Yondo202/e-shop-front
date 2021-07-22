@@ -1,6 +1,7 @@
 import styled from "styled-components"
 
 export const ButtonStyleOne = styled.button`
+    letter-spacing:0.2px;
     background-color:${props=>props.theme.buttonColor};
     color:white;
     font-weight:500;
@@ -8,32 +9,35 @@ export const ButtonStyleOne = styled.button`
     padding: 8px 15px;
     margin-right: 12px;
     flex:1 1 40%;
-    border-radius:5px;
+    // border-radius:5px;
     outline:none;
     height: 40px;
-    /* outline: 2px solid #ffffff;
-    transition: outline-offset 0.3s ease;
-    &:hover,&:focus{
-        outline-offset: -5px;
-    }  */
+    outline: 1px solid #ffffff;
+    transition: outline-offset 250ms ease;
+    &:hover,
+    &:focus{
+        outline-offset: -6px;
+    }  
 `
 export const ButtonStyleTwo = styled.button`
+    letter-spacing:0.2px;
     font-weight:500;
     border:none;
     padding: 8px 15px;
     margin-right: 12px;
     flex:1 1 40%;
-    border-radius:5px;
+    // border-radius:5px;
     outline:none;
     height: 40px;
     background-color:#ffffff;
     color:rgb(21, 58, 91);
     box-shadow:0px 0px 0px 2px ${props=>props.theme.buttonColor} inset;
-    /* outline: 2px solid ${props=>props.theme.buttonColor};
-    transition: outline-offset 0.3s ease;
-    &:hover,&:focus{
-        outline-offset: 5px;
-    }  */
+    outline: 1px solid ${props=>props.theme.buttonColor};
+    transition: outline-offset 250ms ease;
+    &:hover,
+    &:focus{
+        outline-offset: -6px;
+    }  
 `
 
 export const InputStyle = styled.div`
