@@ -9,9 +9,6 @@ const MenuContext = React.createContext();
 
 
 export const MenuStore = (props) =>{
-
-    console.log(`props`, props);
-
     return(
         <MenuContext.Provider value={{ ...props.value}} >
             {props.children}
@@ -21,5 +18,3 @@ export const MenuStore = (props) =>{
 
 
 export default MenuContext;
-
-

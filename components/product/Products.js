@@ -11,7 +11,6 @@ const Products = ({data}) => {
                 <div className="item imageParent">
                     <div className="Images">
                         {/* <img src={process.env.serverUrl + data.image[0]?.url} /> */}
-                        
                         <Magnifier
                          src={process.env.serverUrl + data.image[0]?.url}
                          zoomFactor={0.7}

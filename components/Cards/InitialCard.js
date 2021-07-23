@@ -9,8 +9,10 @@ const InitialCard = ({data, center, catigory}) => {
     const router = useRouter();
     const [mouseMoved, setMouseMoved] = useState(false);
 
-    const handleClick =(el) =>{
+    const handleClick =(el, test) =>{
         if (!mouseMoved) {
+            console.log("el", test);
+
             router.push(el);
         }
     }
@@ -21,7 +23,7 @@ const InitialCard = ({data, center, catigory}) => {
                 <div className={`content ${center?`Center`:``} ${catigory?`Catigory`:``}` } 
                     onMouseMove={() => setMouseMoved(true)}
                     onMouseDown={() => setMouseMoved(false)}
-                    onMouseUp={() => handleClick(process.env.productUrl + data?.id)}
+                    onMouseUp={() => handleClick(process.env.productUrl + data?.id, data?.name)}
                 >
                     <div className="imgPar">
                         <img src={catigory?process.env.serverUrl+data.image[0]?.url:minimize(data.image[0], "thumbnail")} />

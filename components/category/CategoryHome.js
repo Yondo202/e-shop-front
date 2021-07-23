@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import MenuContext from "@/miscs/ContextMenuProvider"
 import styled from 'styled-components';
 import LeftMenu from './LeftMenu';
 import axios from "axios"
 import { useRouter } from 'next/router'
 import Link from "next/link"
+import CatigoryCards from "@/components/category/CatigoryCards";
 
-
-const CategoryHome = (props) => {
+const CategoryHome = ({ code }) => {
+    const { headerMenu } = useContext(MenuContext);
     const router = useRouter()
     const { id, middle, detail } = router.query
     const [ menuData, setMenuData ] = useState({});
@@ -14,16 +16,11 @@ const CategoryHome = (props) => {
     const [ menuSm, setMenuSm ] = useState(null);
 
     useEffect(()=>{
-        void async function Fetch (){
-           let res = await axios.post(`${process.env.serverUrl}/graphql`, { query: `query{ pages(where:{ slug:"${id}" }){ id name slug
-               category_middles{ name slug 
-                category_details{ id name slug
-                products{ id name slug price bogino_tailbar image{ url } }
-                } } } }` })
-           if(res.data.data.pages.length){
-               setMenuData(res.data.data.pages[0]);
-           }
-       }()
+        headerMenu?.forEach(item=>{
+            if(id===item.slug){
+                setMenuData(item);
+            }
+        })
     },[id])
 
     useEffect(()=>{
@@ -56,7 +53,8 @@ const CategoryHome = (props) => {
             <div style={{marginBottom:50}} className="row">
                 <div className="col-3"><LeftMenu data={menuData} route={{id:id, middle:middle, detail:detail}} /></div>
                 <div className="col-9">
-                    {props.children}
+                    {/* {props.children} */}
+                    <CatigoryCards route={{id:id, middle:middle, detail:detail}} code={code} data={menuData} title={menuData?.name} />
                 </div>
             </div>
         </Container>

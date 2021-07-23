@@ -15,7 +15,7 @@ const cart = () => {
                            <div className="title">Миний сагс</div>
                             <div className="products">
                                 <div className="imgPar">
-                                    <img src="http://192.168.88.78:1338/uploads/thumbnail_open_uri20210528_1381400_2kzizc_7cf1c030b9.jpg" alt="cart items" />
+                                    <img src="http://192.168.88.232:1338/uploads/thumbnail_open_uri20210528_1381400_2kzizc_7cf1c030b9.jpg" alt="cart items" />
                                 </div>
                                 <div className="Contents">
                                     <div className="prodTitle">Нүүрний чийгшүүлэгч</div>

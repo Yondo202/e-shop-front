@@ -22,7 +22,7 @@ const MenuTop = ({ menu, logo }) => {
                         <Link href="/cart">
                             <a className="content">
                                 <span className="icon shop"></span>
-                                <div className="smtitle">Хэтэвч</div>
+                                <div className="smtitle">Сагс</div>
                             </a>
                         </Link>
 

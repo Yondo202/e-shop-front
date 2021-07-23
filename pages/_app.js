@@ -25,9 +25,9 @@ class MyApp extends App {
     async componentDidMount() {
         this.setState({ customTheme : theme})
         // let res = await checkLanguage('/settings', null, true);
-        let res = await axios.get(`http://192.168.88.78:1338/settings`);
+        let res = await axios.get(`${process.env.serverUrl}/settings`);
         let menus = await axios.post(`${process.env.serverUrl}/graphql`, {query: `query{pages{ id name slug
-            category_middles{ name slug
+            category_middles{ id name slug
               category_details{ id name slug } } } }`})
         const config = {width: window.innerWidth, height: window.innerHeight};
 

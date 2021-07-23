@@ -18,7 +18,6 @@ const settings = {
 };
 
 const Slider = ({ data }) => {
-    console.log(`data`, data);
     return (
         <Container >
             <ReactSlider {...settings}>
