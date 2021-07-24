@@ -9,6 +9,7 @@ module.exports = {
 
         //test
         serverUrl: 'https://bf201a2bb400.ngrok.io',
+        frontUrl: 'https://e-shop-front.vercel.app',
 
         // serverUrl: 'http://192.168.88.232:1338',
         frontUrl: 'http://192.168.88.232:4000',
