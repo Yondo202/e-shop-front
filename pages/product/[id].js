@@ -16,7 +16,6 @@ const Blog = ({data, other}) => {
 export default Blog;
 
 export async function getServerSideProps({params, req}){
-    console.log(`params.id`, params.id)
     let data = await checkLanguage(`/products/${params.id}`, req, true);
     // let data = Axios.get(`/products/${params.id}`);
     return {props: { data: data.data }}
