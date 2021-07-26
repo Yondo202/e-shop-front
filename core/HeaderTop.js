@@ -1,8 +1,39 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import Link from "next/link"
+import Axios from 'axios';
 
 const MenuTop = ({ menu, logo }) => {
+    const [ inp, setInp ] = useState('');
+    const [ search, setSearch ] = useState([]);
+    const [ result, setResult ] = useState(false);
+
+    const FetchSearch = async (e) =>{
+        setInp(e.target.value);
+        if(e.target.value.length > 1){
+            await Axios.get(`${process.env.serverUrl}/search/${e.target.value}`).then(res=>{
+                if(res.data.length){
+                    setSearch(res.data);
+                    setResult(true);
+                }else{
+                    setResult(false);
+                }
+            })
+        }else{
+            setResult(false);
+        }
+    } 
+
+    // console.log(`search`, search);
+
+    const submitHandler = async (e) =>{
+        e.preventDefault();
+        await Axios.get(`${process.env.serverUrl}/products?name_contains=${inp}&bogino_tailbar=${inp}`).then(res=>{
+           console.log(`res`, res)
+        })
+    }
+  
+
     return (
         <Container >
             <div className="ContentPar container-xl"> 
@@ -13,9 +44,19 @@ const MenuTop = ({ menu, logo }) => {
                 </Link>
                 <div className="searchBar">
                     <div className="icon">
-                        <img src="/img/search.png" alt="seacth"/>
+                        <img  src="/img/search.png" alt="seacth"/>
                     </div>
-                    <input className="myInp" placeholder="Хайх ..." />
+                    <form onSubmit={submitHandler}>
+                        <input value={inp} onChange={FetchSearch} type="text" className="myInp" placeholder="Хайх ..." />
+                    </form>
+
+                    {result?<div className="resultPar">
+                        {search.map((el,ind)=>{
+                            return(
+                                <div key={ind} className="items">{el.name}</div>
+                            )
+                        })}
+                    </div>:null}
                 </div>
                 <div className="menus">
 
@@ -58,6 +99,27 @@ const Container = styled.div`
     .searchBar{
         position: relative;
         width: 40%;
+        .resultPar{
+            z-index:3;
+            position:absolute;
+            width:100%;
+            background-color:#ffffff;
+            left:0;
+            botton:0;
+            padding:10px 0px;
+            box-shadow:0px 0px 20px -12px;
+            .items{
+                font-size:13px;
+                padding:10px 7px;
+                font-weight:500;
+                color:${props=>props.theme.textColor};
+                cursor:pointer;
+                &:hover{
+                    background-color:#f1f3f5;
+                }
+            }
+
+        }
         .icon{
             opacity: 0.7;
             padding: 4px 4px;
