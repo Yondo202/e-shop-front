@@ -5,6 +5,7 @@ import { ButtonStyleOne, ButtonStyleTwo } from "components/miscs/CustomStyle"
 import Magnifier from "react-magnifier";
 
 const Products = ({data}) => {
+    console.log(`data`, data);
     return (
         <Container className="row">
             <div className="col-md-6">
@@ -12,11 +13,11 @@ const Products = ({data}) => {
                     <div className="Images">
                         {/* <img src={process.env.serverUrl + data.image[0]?.url} /> */}
                         <Magnifier
-                         src={process.env.serverUrl + data.image[0]?.url}
-                         zoomFactor={0.7}
-                         mgWidth={250}
-                         mgHeight={250}
-                        //  width={500}
+                            src={process.env.serverUrl + data.image[0]?.url}
+                            zoomFactor={0.7}
+                            mgWidth={250}
+                            mgHeight={250}
+                            //  width={500}
                         />
                     </div>
                 </div>
