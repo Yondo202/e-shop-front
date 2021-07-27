@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
-import Link from "next/link"
+import Ctx from "@/miscs/ContextMenuProvider";
+import Link from "next/link";
 import Axios from 'axios';
 
 const MenuTop = ({ menu, logo }) => {
+    const { cartItems } = useContext(Ctx);
     const [ inp, setInp ] = useState('');
     const [ search, setSearch ] = useState([]);
     const [ result, setResult ] = useState(false);
@@ -22,13 +24,12 @@ const MenuTop = ({ menu, logo }) => {
         }else{
             setResult(false);
         }
-    } 
-
+    }
     // console.log(`search`, search);
 
     const submitHandler = async (e) =>{
         e.preventDefault();
-        await Axios.get(`${process.env.serverUrl}/products?name_contains=${inp}&bogino_tailbar=${inp}`).then(res=>{
+        await Axios.get(`${process.env.serverUrl}/products?name_contains=${inp}`).then(res=>{
            console.log(`res`, res)
         })
     }
@@ -62,14 +63,15 @@ const MenuTop = ({ menu, logo }) => {
 
                         <Link href="/cart">
                             <a className="content">
-                                <span className="icon shop"></span>
+                                {cartItems.length?<div className="cartCount">{cartItems.length}</div>:null}
+                                <span className="icon shop" />
                                 <div className="smtitle">Сагс</div>
                             </a>
                         </Link>
 
                         <Link href="/login">
                             <a className="content">
-                                <span className="icon login"></span>
+                                <span className="icon login" />
                                 <div className="smtitle">Нэвтрэх</div>
                             </a>
                         </Link>
@@ -100,10 +102,15 @@ const Container = styled.div`
         position: relative;
         width: 40%;
         .resultPar{
+            max-height:50vh;
+            overflow-y:scroll;
             z-index:3;
             position:absolute;
             width:100%;
             background-color:#ffffff;
+            &::-webkit-scrollbar {
+                width: 0px !important;
+            }
             left:0;
             botton:0;
             padding:10px 0px;
@@ -146,23 +153,45 @@ const Container = styled.div`
         justify-content: space-between;
         .menus{
             display:flex;
-            gap: 20px;
+            gap: 26px;
             .content{
+                position:relative;
                 text-decoration:none;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 cursor: pointer;
+                .cartCount{
+                    width: 18px;
+                    height: 18px;
+                    color: rgb(255, 255, 255);
+                    font-size: 11px;
+                    font-weight: 600;
+                    font-family: arial, sans-serif;
+                    text-align: center;
+                    line-height: 18px;
+                    border-radius: 50%;
+                    background-color: #f56c73;
+                    transition: all 300ms ease-in-out 0s;
+                    position: absolute;
+                    right: -8px;
+                    top: -5px;
+                }
+                &:hover{
+                    .smtitle{
+                        color:${props=>props.theme.mainColor};
+                    }
+                }
                 .smtitle{
                     color: rgb(102, 102, 102);
                     font-size: 13px;
-                    font-weight: 500;
+                    font-weight: 400;
                     margin-top: 2px;
                 }
                 .icon{
-                    width: 22px;
-                    height: 22px;
-                    background-size: 22px;
+                    width: 25px;
+                    height: 25px;
+                    background-size: 25px;
                     background-position: center center;
                     background-repeat: no-repeat;
                     transition: all 200ms ease-in-out 0s;

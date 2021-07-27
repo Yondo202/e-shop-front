@@ -9,10 +9,8 @@ const InitialCard = ({data, center, catigory}) => {
     const router = useRouter();
     const [mouseMoved, setMouseMoved] = useState(false);
 
-    const handleClick =(el, test) =>{
+    const handleClick =(el) =>{
         if (!mouseMoved) {
-            console.log("el", test);
-
             router.push(el);
         }
     }
@@ -32,8 +30,8 @@ const InitialCard = ({data, center, catigory}) => {
                         <div className="titles">{data?.name}</div>
                         <div className="desc">{data?.bogino_tailbar}</div>
                         <div className="priceSector">
-                            <div className="price">{NumberComma(data?.price)} ₮</div>
-                            <div className="salePrice">{NumberComma(data?.sale_price)} ₮</div>
+                            <div className="price">{NumberComma(data?.price)}</div>
+                            <div className="salePrice">{NumberComma(data?.sale_price)}</div>
                         </div>
                     </div>
                 </div>

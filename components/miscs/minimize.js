@@ -9,7 +9,7 @@ const minimize = (obj, quality) => {
     if(obj === undefined || obj === null) return placeholder
     if(obj.formats === undefined || obj.formats === null) return obj.url && CH(obj.url) || placeholder
 
-    const {config} = useContext(MenuContext)
+    const { config } = useContext(MenuContext)
     const formats = obj.formats
 
     if(config.width <= 768) {

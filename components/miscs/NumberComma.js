@@ -4,7 +4,7 @@ export const NumberComma = (el) => {
         var commas = num.toLocaleString("en-US");
         var commas = parseFloat(commas)
         var commas = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        return commas
+        return `${commas} ₮`
     }else{
         return null
     }

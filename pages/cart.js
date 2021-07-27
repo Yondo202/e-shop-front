@@ -1,11 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import Ctx from "@/miscs/ContextMenuProvider";
+import Link from 'next/link';
 import Root from "@/core/Root";
 import styled from 'styled-components';
 import { RiDeleteBin5Line } from "react-icons/ri"
 import { VscHeart } from "react-icons/vsc"
 import { ButtonStyleOne } from "components/miscs/CustomStyle"
+import axios from 'axios';
+import { NumberComma } from "components/miscs/NumberComma"
 
 const cart = () => {
+    const { cartItems, DeleteHandle, listenCart } = useContext(Ctx);
+    const [ totalCost, setTotalCost ] = useState(0);
+    const [ cartData, setCartData ] = useState([]);
+
+    useEffect(()=>{
+        setTotalCost(0);
+        setCartData([])
+        FetchData();
+    },[cartItems])
+
+    const FetchData = async () =>{
+        cartItems.forEach(item=>{
+            getProduct(item);
+        })
+    }
+
+    const getProduct = async (item) =>{
+        await axios.get(`${process.env.serverUrl}/products/${item.id}`).then(res=>{
+            res.data.count = item.count
+            setCartData(prev=>[ ...prev, res.data ])
+            setTotalCost(prev=>prev+(res.data.price*item.count))
+        })
+    }
+
+    console.log(`cartData`, cartData);
+    console.log(`cartItems`, cartItems);
+
+
+    // console.log(`cartData`, cartData);
+
+    const MinusAddHandle = (data,add) =>{
+        console.log(`add`, add);
+    }
+
     return (
         <Root>
             <Container className="container">
@@ -13,33 +51,39 @@ const cart = () => {
                     <div className="col-md-8 col-12">
                         <div className="items">
                            <div className="title">Миний сагс</div>
-                            <div className="products">
-                                <div className="imgPar">
-                                    <img src="http://192.168.88.232:1338/uploads/thumbnail_open_uri20210528_1381400_2kzizc_7cf1c030b9.jpg" alt="cart items" />
-                                </div>
-                                <div className="Contents">
-                                    <div className="prodTitle">Нүүрний чийгшүүлэгч</div>
-                                    <div className="description">ba babab ababab</div>
-                                    <div className="price">
-                                        <div className="mainPrice">16000 ₮</div>
-                                        <div className="salePrice">5000 ₮</div>
-                                    </div>
-                                    <div className="buttonsPar">
-                                        <div className="stock">Боломжит үлдэгдэл:10</div>
-                                        <div className="AddSector">
-                                            <div className="quantity minus">-</div>
-                                            <div className="quantity">1</div>
-                                            <div className="quantity add">+</div>
+                            {cartData.map((data,ind)=>{
+                                return(
+                                    <div key={ind} className="products">
+                                        <div className="imgPar">
+                                            <img src={process.env.serverUrl + data.image[0]?.url} alt="cart items" />
                                         </div>
-                                        <div className="handleButtons">
-                                            <div className="icons liked"><RiDeleteBin5Line /><span>Устгах</span></div>
-                                            <div className="icons delete"><VscHeart /><span>Хадгалах</span></div>
+                                        <div className="Contents">
+                                            <Link onClick={()=>console.log('baba')} href={`/product/${data.id}`}><a className="prodTitle"> {data?.name} </a></Link>
+                                            <div className="description">{data?.bogino_tailbar}</div>
+                                            <div className="price">
+                                                <div className="mainPrice">{NumberComma(data?.price)}</div>
+                                                <div className="salePrice">{NumberComma(data?.sale_price)}</div>
+                                            </div>
+                                            <div className="buttonsPar">
+                                                <div className="stock">Боломжит үлдэгдэл: {data.stock}</div>
+                                                <div className="AddSector">
+                                                    <div onClick={()=>MinusAddHandle(data,false)} className="quantity minus">-</div>
+                                                    <div className="quantity">{data.count}</div>
+                                                    <div onClick={()=>MinusAddHandle(data,true)} className="quantity add">+</div>
+                                                </div>
+                                                <div className="handleButtons">
+                                                    {/* <div className="icons delete"><VscHeart /><span>Хадгалах</span></div> */}
+                                                    <div className="icons delete"></div>
+                                                    <div onClick={()=>DeleteHandle(data)} className="icons liked"><RiDeleteBin5Line /><span>Устгах</span></div>
+
+                                                </div>
+                                            </div>
                                         </div>
-                                        
                                     </div>
-                                </div>
-                            </div>
+                                )
+                            })}
                         </div>
+
                     </div>
                     <div className="col-md-4 col-12">
                         <div className="items">
@@ -47,7 +91,7 @@ const cart = () => {
                             <div className="priceInfo">
                                 <div className="priceTitle">
                                     <span className="text">Төлөх дүн</span>
-                                    <span className="price">5000 ₮</span>
+                                    <span className="price">{NumberComma(totalCost)}</span>
                                 </div>
                             </div>
 
@@ -61,7 +105,6 @@ const cart = () => {
 }
 
 export default cart
-
 
 const Container = styled.div`
     padding-top:30px;
@@ -103,6 +146,11 @@ const Container = styled.div`
             background-color:#ffffff;
             display:flex;
             padding: 23px 23px;
+            border-bottom:1px solid rgba(0,0,0,0.2);
+            border-bottom-style:dashed;
+            &:last-child{
+                border-bottom:none;
+            }
             .Contents{
                 width:100%;
                 padding-left:20px;
@@ -165,8 +213,12 @@ const Container = styled.div`
                     }
                 }
                 .prodTitle{
+                    text-decoration:none;
                     font-weight: 500;
                     font-size: 15px;
+                    &:hover{
+                        color:${props=>props.theme.mainColor};
+                    }
                 }
                 .description{
                     color:#606060;

@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
+import Ctx from "@/miscs/ContextMenuProvider"
 import { NumberComma } from "components/miscs/NumberComma"
 import { ButtonStyleOne, ButtonStyleTwo } from "components/miscs/CustomStyle"
 import Magnifier from "react-magnifier";
 
-const Products = ({data}) => {
-    console.log(`data`, data);
+const Products = ({ data }) => {
+    const { listenCart } = useContext(Ctx);
+    const [ addCount, setAddCount ] = useState(1);
+
+    const AddCartHandle =_=>{
+        listenCart(data, addCount);
+    }
+
+
     return (
         <Container className="row">
             <div className="col-md-6">
@@ -33,23 +41,23 @@ const Products = ({data}) => {
                     <div className="Price">
                         <div className="priceSector">
                             <div className="smTitle">Худалдан авах үнэ</div>
-                            <div className="prices">{NumberComma(data?.price)} ₮</div>
+                            <div className="prices">{NumberComma(data?.price)}</div>
                         </div>
                         
                         <div className="priceSector">
-                            <div className="smTitle">Үндсэн үнэ</div>
-                            <div className="prices A2">{NumberComma(data?.sale_price)} ₮</div>
+                            <div className="smTitle">{data?.sale_price?`Үндсэн үнэ`:``}</div>
+                            <div className="prices A2">{NumberComma(data?.sale_price)}</div>
                         </div>
                     </div>
                     <div className="buttonsPar">
                         <div className="AddSector">
-                            <div className="quantity minus">-</div>
-                            <div className="quantity">1</div>
-                            <div className="quantity add">+</div>
+                            <div onClick={()=>setAddCount(prev=> prev>1?prev-1:prev)} className="quantity minus">-</div>
+                            <div className="quantity">{addCount}</div>
+                            <div onClick={()=>setAddCount(prev=>prev+1)} className="quantity add">+</div>
                         </div>
 
-                        <ButtonStyleTwo>Сагсанд нэмэх</ButtonStyleTwo>
-                        <ButtonStyleOne>Худалдан авах</ButtonStyleOne>
+                        <ButtonStyleTwo onClick={AddCartHandle}>Сагсанд нэмэх</ButtonStyleTwo>
+                        <ButtonStyleOne >Худалдан авах</ButtonStyleOne>
                     </div>
                 </div>
             </div>

@@ -21,6 +21,9 @@ module.exports = (phase) => {
         })(),
         newsUrl:(()=>{
             return '/news/'
+        })(),
+        cart:(()=>{
+            return 'cart-items'
         })()
 
         //infosystem
