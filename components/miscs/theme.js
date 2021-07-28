@@ -17,10 +17,12 @@ export const mainColor3 = "#0054a6";
 
 
 export const textColor = "rgba(33, 37, 41)";
-export const textColor2 = "rgba(68, 68, 68)";
+export const textColor2 = "rgba(90, 90, 90)";
 export const textColor3 = "rgb(17, 17, 17)";
 
 export const buttonColor = "rgb(21,58,91)";
 
 
 export const headerLogo = "200px";
+
+export const bodyColor = "#f1f3f5"

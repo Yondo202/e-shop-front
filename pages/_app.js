@@ -63,7 +63,7 @@ class MyApp extends App {
                 <ThemeProvider theme={this.state.customTheme}>
                     <MenuStore value={this.state}>
                         {/* <AnimatePresence exitBeforeEnter> */}
-                           {this.state.completelyLoaded? <Component {...pageProps} key={router.route} /> : <h1>Loading ...............</h1> }
+                           {this.state.completelyLoaded? <Component {...pageProps} key={router.route} /> : <div style={{width:`100%`, height:`100vh`,display:`flex`, alignItems:"center", justifyContent:"center"}}><img src="/img/giff.gif" /></div>  }
                            {/* <Component {...pageProps} key={router.route} />  */}
                         {/* </AnimatePresence> */}
                     </MenuStore>
@@ -73,3 +73,4 @@ class MyApp extends App {
 }
 
 export default MyApp;
+

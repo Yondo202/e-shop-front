@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Ctx from "@/miscs/ContextMenuProvider";
+import { Loading } from "@/miscs/CustomComp"
 import Link from 'next/link';
 import Root from "@/core/Root";
 import styled from 'styled-components';
@@ -10,11 +11,13 @@ import axios from 'axios';
 import { NumberComma } from "components/miscs/NumberComma"
 
 const cart = () => {
+    const [ loading, setLoading ] = useState(true);
     const { cartItems, DeleteHandle, listenCart } = useContext(Ctx);
     const [ totalCost, setTotalCost ] = useState(0);
     const [ cartData, setCartData ] = useState([]);
 
     useEffect(()=>{
+        setLoading(true);
         setTotalCost(0);
         setCartData([])
         FetchData();
@@ -32,22 +35,25 @@ const cart = () => {
             setCartData(prev=>[ ...prev, res.data ])
             setTotalCost(prev=>prev+(res.data.price*item.count))
         })
+        setLoading(false);
     }
-
-    console.log(`cartData`, cartData);
-    console.log(`cartItems`, cartItems);
-
-
-    // console.log(`cartData`, cartData);
 
     const MinusAddHandle = (data,add) =>{
-        console.log(`add`, add);
+        if(add){
+            listenCart(data,1);
+        }else{
+            if(data.count>1){
+                listenCart(data,-1);
+            }
+        }
     }
+
 
     return (
         <Root>
             <Container className="container">
-                <div className="row">
+                {loading? <Loading />:(
+                    <div className="row">
                     <div className="col-md-8 col-12">
                         <div className="items">
                            <div className="title">Миний сагс</div>
@@ -99,7 +105,10 @@ const cart = () => {
                         </div>
                     </div>
                 </div>
+                )}
+                
             </Container>
+
         </Root>
     )
 }
@@ -107,6 +116,8 @@ const cart = () => {
 export default cart
 
 const Container = styled.div`
+    position:relative;
+    min-height:50rem;
     padding-top:30px;
     padding-bottom:30px;
     .items{

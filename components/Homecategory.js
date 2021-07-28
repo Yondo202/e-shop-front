@@ -2,19 +2,24 @@ import React from 'react';
 import ReactSlider from "react-slick";
 import InitialTitle from "components/titles/InitialTitle";
 import styled from 'styled-components';
-import InitialCard from "components/Cards/InitialCard"
+import InitialCard from "components/Cards/InitialCard";
+import { CustomArrow } from "@/miscs/CustomComp";
 
 const Homecategory = ({ data }) => {
+  const sliderRef = React.useRef();
     return (
-        <Container className="container-xl">
+        <Container className="container-xxl">
             <InitialTitle data={data?.name} />
-            <ReactSlider {...settings}>
-                {TestData.reverse().map((el,ind)=>{
-                    return(
-                        <InitialCard key={ind} center={true} data={el} />
-                    )
-                })}
-            </ReactSlider>
+            <div className="sliderParent">
+              <ReactSlider ref={sliderRef} {...settings}>
+                  {TestData.reverse().map((el,ind)=>{
+                      return(
+                          <InitialCard key={ind} center={true} data={el} />
+                      )
+                  })}
+              </ReactSlider>
+              <CustomArrow sliderRef={sliderRef} />
+            </div>
         </Container>
     )
 }
@@ -23,9 +28,22 @@ export default Homecategory
 
 const Container = styled.div`
     margin-bottom:20px;
-    .slick-list{
-        padding: 15px 0px;
+    .sliderParent{
+       position:relative;
+      .slick-list{
+          padding: 15px 0px;
+          .slick-active{
+            padding-right:18px;
+          }
+      }
     }
+   
+    // .slick-active{
+    //   transition:all 0.3s ease;
+    //   &:hover{
+    //       transform:scale(1.1);
+    //   }
+    // }
 `
 const settings = {
     // className: "center",
@@ -39,6 +57,33 @@ const settings = {
     arrows: false,
     dots:false,
     rows: 2,
+    responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2,
+            rows: 1
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            rows: 1
+          }
+        }
+    ]
 };
 
 

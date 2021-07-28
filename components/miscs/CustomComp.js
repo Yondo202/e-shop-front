@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from "styled-components"
 import { BsCheckCircle } from "react-icons/bs"
 
@@ -66,12 +66,14 @@ const AlertStyle = styled.div`
 `
 
 
-export const Loading = () => {
+export const Loading =_=> {
     return (
         <LoadingStyle>
-            <img src="/giff2.gif" />    
+            <img src="/img/giff.gif" />
+            <div />
         </LoadingStyle>
     )
+    
 }
 
  export const LoadingStyle = styled.div`
@@ -82,13 +84,70 @@ export const Loading = () => {
     width:100%;
     background-color:rgba(255,255,255, 0.5);
     display:flex;
+    flex-direction:column;
     align-items:center;
-    justify-content:center;
+    justify-content:space-around;
+    z-index:999;
     img{
-        margin-top:-3rem;
+        width:100px;
+        height:auto;
         transform:scale(0.8);
     }
 `
 
+import { VscArrowRight, VscArrowLeft } from "react-icons/vsc"
 
+export const CustomArrow = ({ sliderRef }) => {
+    const gotoNext = () => {
+        sliderRef.current.slickNext();
+    }
+    const prev = () => {
+        sliderRef.current.slickPrev();
+    }
+    return (
+        <Arrow>
+            <div onClick={gotoNext} className="buttons prev">
+                <VscArrowRight />
+            </div>
+            <div onClick={prev} className="buttons next">
+                <VscArrowLeft />
+            </div>
+        </Arrow>
+    )
+}
+
+const Arrow = styled.div`
+    .buttons{
+        transition:all 0.3s ease;
+        position:absolute;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        top:40%;
+        border-radius:50%;
+        padding:8px;
+        background-color:#ffffff;
+        box-shadow:0px 0px 14px -6px;
+        z-index:1;
+        svg{
+            font-size:25px;
+        }
+        cursor:pointer;
+        &:hover{
+            background-color:#e4e6eb;
+        }
+    }
+    .next{
+        left:10px;
+        &:hover{
+            left:5px;
+        }
+    }
+    .prev{
+        right:19px;
+        &:hover{
+            right:5px;
+        }
+    }
+`
 

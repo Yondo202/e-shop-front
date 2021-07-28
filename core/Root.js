@@ -8,9 +8,11 @@ import PreSeo from "@/components/miscs/PreSeo";
 import { IoIosArrowUp } from "react-icons/io";
 import { animateScroll as scroll } from "react-scroll";
 import HeaderTop from "@/core/HeaderTop"
+import { Alert } from "@/components/miscs/CustomComp"
+import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 export default function Root(props) {
-    const { headerMenu, logo, menuTop } = useContext(MenuContext);
+    const { headerMenu, logo, menuTop, footerMenu, alert } = useContext(MenuContext);
     const [ showBtn, setShowBtn ] = useState(false);
 
     React.useEffect(()=>{
@@ -37,11 +39,16 @@ export default function Root(props) {
             <HeaderTop menu={menuTop || []} logo={logo}/>
             <Header menu={headerMenu || []}/>
                 {props.children}
-            <Footer/>
-            {showBtn&&<div  onClick={clickHandle} className="toTop">
+            <MessengerCustomerChat pageId="104975931248820" appId="1410175519375837" />
+            <Footer logo={logo} footerMenu={footerMenu} />
+
+
+            {/* {showBtn&&<div  onClick={clickHandle} className="toTop">
                <IoIosArrowUp className="one" />
                <IoIosArrowUp className="two" />
-            </div>} 
+            </div>}  */}
+
+            <Alert alert={alert} />
         </Body>
     )
 }
@@ -50,7 +57,7 @@ const Body = styled.div `
     letter-spacing: 0.2px !important;
     position: relative;
     /* background-color: #f6f8fa; */
-    background-color: #f1f3f5;
+    background-color: ${props=>props.theme.bodyColor};
     font-size: ${(props) => props.theme.fontSize};
     font-family: ${(props) => props.theme.fontFamily};
     font-weight: ${props => props.theme.fontWeightNormal};

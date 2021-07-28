@@ -18,7 +18,7 @@ const ResolveComponent = ({data}) => {
         loadViews()
     },[data])
     return (
-        <React.Suspense fallback={<Container><h2>Уншиж байна...</h2></Container>}>
+        <React.Suspense fallback={<Container><img src="/img/giff.gif" /></Container>}>
             {views}
         </React.Suspense>
     );
@@ -37,8 +37,12 @@ function capitalizeFirstLetter(string) {
 }
 
 const Container = styled.div `
+    background-color:#ffffff;
     display:flex;
     justify-content:center;
     align-items:center;
     height:100vh;
+    img{
+        margin-top:-18em;
+    }
 `

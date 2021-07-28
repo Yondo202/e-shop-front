@@ -44,8 +44,12 @@ const InitialCard = ({data, center, catigory}) => {
 export default InitialCard
 
 const Container = styled.div`
+    transition:all 0.3s ease;
+    &:hover{
+        transform:scale(1.1);
+    }
     .Parent{
-        padding-right:18px;
+        // padding-right:18px;
         height: 16rem;
         margin-bottom:15px;
         .content{
@@ -72,7 +76,7 @@ const Container = styled.div`
             .textPar{
                 width:100%;
                 background-color: #ffffff;
-                padding: 6px 10px;
+                padding: 6px 12px;
                 align-self: flex-start;
                 .titles{
                     width: 100%;
@@ -146,5 +150,10 @@ const Container = styled.div`
                 }
             }
         }
+    }
+    @media (max-width:480px){
+       .Parent{
+            padding-right:0px;
+       }
     }
 `

@@ -11,6 +11,7 @@ const CatigoryCards = ({ title, data, route }) => {
 
     useEffect(()=>{
         setMyTitle(title);
+        setDatas([]);
         if(data?.id){
             if(route.id && !route.middle && !route.detail){
                 let arr = []

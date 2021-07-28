@@ -6,7 +6,7 @@ const Header = ({ menu }) => {
 
     return (
         <Container>
-            <div className="menusPar container-xl">
+            <div className="menusPar container-xxl">
                 {menu?.map((el,ind)=>{
                     return( 
                         <Link key={ind} href={`/p/`+el.slug}>
@@ -57,6 +57,11 @@ const Container = styled.div`
                     width: 100%;
                 }
             }
+        }
+    }
+    @media (max-width:768px){
+        .menusPar{
+            display:none;
         }
     }
 `
