@@ -146,7 +146,7 @@ const Arrow = styled.div`
     .prev{
         right:19px;
         &:hover{
-            right:5px;
+            right:14px;
         }
     }
 `

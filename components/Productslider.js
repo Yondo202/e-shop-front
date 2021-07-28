@@ -14,7 +14,7 @@ const settings = {
     // fade: true,
     slidesToShow: 5,
     slidesToScroll: 5,
-    arrows: true,
+    arrows: false,
     dots:false,
     responsive: [
         {
