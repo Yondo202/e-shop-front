@@ -10,6 +10,8 @@ import { animateScroll as scroll } from "react-scroll";
 import HeaderTop from "@/core/HeaderTop"
 import { Alert } from "@/components/miscs/CustomComp"
 import MessengerCustomerChat from 'react-messenger-customer-chat';
+import TopLoad from "@/miscs/TopLoad"
+import Router from "next/router"
 
 export default function Root(props) {
     const { headerMenu, logo, menuTop, footerMenu, alert } = useContext(MenuContext);
@@ -36,6 +38,7 @@ export default function Root(props) {
     return (
         <Body>
             <PreSeo seo={props.seo}/>
+            <TopLoad Router={Router} />
             <HeaderTop menu={menuTop || []} logo={logo}/>
             <Header menu={headerMenu || []}/>
                 {props.children}

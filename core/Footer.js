@@ -34,9 +34,6 @@ import { ImLocation } from "react-icons/im"
 import { FaFacebookF,FaTwitter, FaYoutube, FaInstagram  } from "react-icons/fa"
 
 const Footer = ({logo , footerMenu}) => {
-
-    console.log(`footerMenu`, footerMenu);
-    
     return (
         <Container >
             <div className="container-xxl SectorParent">

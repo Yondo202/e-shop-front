@@ -48,7 +48,6 @@ const cart = () => {
         }
     }
 
-
     return (
         <Root>
             <Container className="container">

@@ -2,8 +2,8 @@ import React from 'react'
 import Link  from 'next/link';
 import styled from 'styled-components'
 
-const Header = ({ menu }) => {
 
+const Header = ({ menu }) => {
     return (
         <Container>
             <div className="menusPar container-xxl">

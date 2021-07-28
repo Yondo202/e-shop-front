@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import App from "next/app";
 import checkLanguage from "@/miscs/checkLanguage";
 import { MenuStore } from "@/miscs/ContextMenuProvider";
@@ -6,6 +6,9 @@ import { ThemeProvider } from "styled-components";
 import * as theme from "@/miscs/theme";
 import axios from "axios";
 // import TagManager from "react-gtm-module";
+
+
+{/* <TopBarProgress /> */}
 
 class MyApp extends App {
     state = {
@@ -20,6 +23,7 @@ class MyApp extends App {
       completelyLoaded: false,
       name: 'e-shop',
       description: 'To be continued...',
+      topLoad:false
     };
     
     async componentDidMount() {
@@ -56,7 +60,6 @@ class MyApp extends App {
     }
 
 
-
     render() {
         const { Component, pageProps, router } = this.props;
             return (
@@ -73,4 +76,3 @@ class MyApp extends App {
 }
 
 export default MyApp;
-

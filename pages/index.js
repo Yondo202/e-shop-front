@@ -11,10 +11,10 @@ const Index = ({ data }) => {
 
     return (
         <Root>
-            {loaded && <ResolveComponent data={data.Layout}/> }
+            {loaded && <ResolveComponent data={data.Layout}/>}
         </Root>
     );
-};
+};  
 export default Index;
 
 export async function getServerSideProps({params, req}){
