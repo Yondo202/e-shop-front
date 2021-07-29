@@ -34,7 +34,7 @@ const Container = styled.div`
             text-decoration:none;
             text-transform: uppercase;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13.4px;
             text-align: center;
             position: relative;
             font-weight: 500;
