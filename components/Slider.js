@@ -3,8 +3,6 @@ import ReactSlider from "react-slick";
 import styled from 'styled-components';
 import minimize from "@/miscs/minimize"
 import { CustomArrow } from "@/miscs/CustomComp";
-import { Skeleton } from "@/miscs/CustomComp"
-
 
 const settings = {
     dots: true,
@@ -24,7 +22,7 @@ const Slider = ({ data }) => {
     const sliderRef = React.useRef();
     return (
         <Container >
-            {!data?<Skeleton />:<ReactSlider ref={sliderRef} {...settings}>
+            <ReactSlider ref={sliderRef} {...settings}>
                     {/* <div className="ImgPar">
                         <img src="https://cdn5.shoppy.mn/img/73794/2560x0xwebp/Main2.jpg?h=43828d3d39c8764bfd647f4ef4cc7e00509a5739" />
                     </div>
@@ -38,7 +36,7 @@ const Slider = ({ data }) => {
                         </div>
                     )
                 })}
-            </ReactSlider>}
+            </ReactSlider>
             <CustomArrow sliderRef={sliderRef} />
         </Container>
     )
