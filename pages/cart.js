@@ -51,7 +51,7 @@ const cart = () => {
     return (
         <Root>
             <Container className="container">
-                {loading? <Loading />:(
+                {loading&&cartItems.length!==0? <Loading />:(
                     <div className="row">
                     <div className="col-md-8 col-12">
                         <div className="items">

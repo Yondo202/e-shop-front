@@ -198,14 +198,17 @@ export const SkeletonCard = () =>{
 }
 
 export const SkeletonCards = styled.div`
-    width:auto;
-    margin:10px 0px 30px 0px; 
+    // margin:10px 0px 30px 0px; 
     display:flex;
     align-items:center;
     justify-content:center;
     gap:18px;
     background-color:#fff;
     height: 16rem;
+    width:100%;
+    border:1px solid rgba(0,0,0, 0.157);
+    border-radius: 4px;
+    box-shadow:1px 1px 10px -8px;
     .item{
         overflow: hidden;
         height:100%;

@@ -3,6 +3,7 @@ import InitialCard from "@/components/Cards/InitialCard"
 import styled from 'styled-components'
 import axios from 'axios';
 import DocumentTitle from "@/miscs/DocumentTitle"
+import { SkeletonCard } from "@/miscs/CustomComp"
 
 const CatigoryCards = ({ title, data, route }) => {
     const [ myTitle, setMyTitle ] = useState('');
@@ -43,7 +44,7 @@ const CatigoryCards = ({ title, data, route }) => {
                 if(arr.length){FetchDetail(arr)}
             }
         }
-    },[data?.id, route.id, route.middle, route.detail])
+    },[data?.id, route.id, route.middle, route.detail]);
 
     const FetchAll = async (arr) =>{
         let data = await axios.post(`${process.env.serverUrl}/graphql`, { query: `query{ products(where:{ category_middles:{ id: [${arr}] } }){
@@ -59,18 +60,33 @@ const CatigoryCards = ({ title, data, route }) => {
             }}` } )
         setDatas(data?.data?.data?.products);
     }
-    
+
     return (
         <Container>
             <div className="title">{myTitle}</div>
             <div className="row">
-                {datas.map((el,ind)=>{
+                {data?.id&&datas.length!==0?datas.map((el,ind)=>{
                     return(
                         <div key={ind} className="col-md-3 col-sm-4 col-6">
                             <InitialCard  center={true} data={el} catigory={true} />
                         </div>
                     )
-                })}
+                }):(
+                    <>
+                        <div className="col-md-3 col-sm-4 col-6">
+                            <SkeletonCard />
+                        </div>
+                        <div className="col-md-3 col-sm-4 col-6">
+                            <SkeletonCard />
+                        </div>
+                        <div className="col-md-3 col-sm-4 col-6">
+                            <SkeletonCard />
+                        </div>
+                        <div className="col-md-3 col-sm-4 col-6">
+                            <SkeletonCard />
+                        </div>
+                    </>
+                )}
             </div>
             
         </Container>
@@ -90,3 +106,4 @@ const Container = styled.div`
         padding: 15px 0px;
     }
 `
+

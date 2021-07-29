@@ -27,8 +27,6 @@ const Slider = ({ data }) => {
             setTime(true);
         }, 700)
     },[])
-
-    console.log(`data`, data);
     return (
         <Container >
             {time?<ReactSlider ref={sliderRef} {...settings}>
