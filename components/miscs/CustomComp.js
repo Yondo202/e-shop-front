@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { BsCheckCircle } from "react-icons/bs"
 
 export const LoadingFull = () => {
@@ -151,3 +151,41 @@ const Arrow = styled.div`
     }
 `
 
+
+
+export const Skeleton = () =>{
+    return(
+        <SkeletonStyle><div className="item" ><div className="child" /></div> </SkeletonStyle>
+    )
+}
+
+const animeSkeleton = keyframes`
+    0%{ left:-100%; }
+    100%{ left:100% }
+`
+
+export const SkeletonStyle = styled.div`
+    max-height: 41em;
+    width:auto;
+    height: 41rem;
+    margin:10px 0px 30px 0px; 
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    background-color:#fff;
+    .item{
+        overflow: hidden;
+        height:100%;
+        width:100%;
+        position:relative;
+        .child{
+            position:absolute;
+            top:0;
+            width:50%;
+            height:100%;
+            background-image: linear-gradient(to right, rgba(60,60,60,0), rgba(120,120,120,0.2), rgba(60,60,60,0));
+            animation: ${animeSkeleton} 1s linear infinite;
+        }
+    }
+`
