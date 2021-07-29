@@ -1,6 +1,6 @@
 import React, { lazy, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { SkeletonHome } from "@/miscs/CustomComp"
+// import { SkeletonHome } from "@/miscs/CustomComp"
 
 const importComponent = Name => lazy(()=>import(`../${Name}`));
 
@@ -20,8 +20,8 @@ const ResolveComponent = ({data}) => {
     },[data])
     return (
         <React.Suspense fallback={ 
-            // <Container><img src="/img/spinner.gif" /></Container>
-            <SkeletonHome />
+            <Container><img src="/img/giff.gif" /></Container>
+            // <SkeletonHome />
         }>
             {views}
         </React.Suspense>
@@ -39,13 +39,13 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-// const Container = styled.div `
-//     background-color:#ffffff;
-//     display:flex;
-//     justify-content:center;
-//     align-items:center;
-//     height:100vh;
-//     img{
-//         margin-top:-18em;
-//     }
-// `
+const Container = styled.div `
+    background-color:#ffffff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    img{
+        margin-top:-19em;
+    }
+`

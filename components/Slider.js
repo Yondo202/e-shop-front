@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ReactSlider from "react-slick";
 import styled from 'styled-components';
-import minimize from "@/miscs/minimize"
 import { CustomArrow, SkeletonHome } from "@/miscs/CustomComp";
 
 
@@ -22,22 +21,18 @@ const settings = {
 const Slider = ({ data }) => {
     const [ time, setTime ] = useState(false);
     const sliderRef = React.useRef();
-    useEffect(()=>{
-        setTimeout(() => {
-            setTime(true);
-        }, 700)
-    },[])
     return (
         <Container >
-            {time?<ReactSlider ref={sliderRef} {...settings}>
+            <ReactSlider ref={sliderRef} {...settings}>
                 {data.image.map((el,ind)=>{
                     return(
                         <div key={ind} className="ImgPar">
-                            <img src={process.env.serverUrl+el.url} alt="slider-photos" />
+                            <img style={time ? {} : {display: 'none'}} src={process.env.serverUrl+el.url} alt="slider-photos" onLoad={()=>setTime(true)}/>
                         </div>
                     )
                 })}
-            </ReactSlider>:<SkeletonHome />}
+            </ReactSlider>
+            {!time&&<SkeletonHome />}
             <CustomArrow sliderRef={sliderRef} />
         </Container>
     )

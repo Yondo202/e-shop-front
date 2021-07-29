@@ -6,7 +6,6 @@ import { ButtonStyleOne, ButtonStyleTwo } from "components/miscs/CustomStyle";
 import Magnifier from "react-magnifier";
 import Information from "@/components/product/Information";
 import minimize from "@/miscs/minimize"
-import { VscArrowDown, VscArrowUp } from "react-icons/vsc"
 
 const Products = ({ data }) => {
     const { listenCart } = useContext(Ctx);
@@ -17,10 +16,7 @@ const Products = ({ data }) => {
         if(data.image.length!==0){
             setImages(data.image[0]);
         }
-    },[])
-
-    console.log(`data.image`, data.image);
-    
+    },[data])
  
     const AddCartHandle =_=>{
         listenCart(data, addCount);
@@ -40,15 +36,6 @@ const Products = ({ data }) => {
                                 )
                             })}
                         </div>
-
-                        {/* <div className="Arrow">
-                            <div className="buttons next">
-                                <VscArrowUp />
-                            </div>
-                            <div className="buttons prev">
-                                <VscArrowDown />
-                            </div>
-                        </div> */}
                     </div>
                     <div className="Images">
                         {/* <img src={process.env.serverUrl + data.image[0]?.url} /> */}
@@ -122,7 +109,6 @@ const Container = styled.div`
             padding:10px 0px;
             overflow-y:scroll;
             padding:10px 10px;
-            position:relative;
             &::-webkit-scrollbar {
                 width: 0px !important;
             }
@@ -141,42 +127,6 @@ const Container = styled.div`
                     }
                 }
             }
-            .Arrow{
-                .buttons{
-                    transition:all 0.3s ease;
-                    position:absolute;
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
-                    left:34%;
-                    border-radius:50%;
-                    padding:8px;
-                    background-color:#ffffff;
-                    box-shadow:0px 0px 10px -6px;
-                    z-index:2;
-                    border:1px solid rgba(0,0,0,0.2);
-                    svg{
-                        font-size:18px;
-                    }
-                    cursor:pointer;
-                    &:hover{
-                        background-color:#e4e6eb;
-                    }
-                }
-                .next{
-                    top:10px;
-                    &:hover{
-                        top:5px;
-                    }
-                }
-                .prev{
-                    bottom:10px;
-                    &:hover{
-                        bottom:5px;
-                    }
-                }
-            }
-            
         }
         .Images{
             width: 78%;
