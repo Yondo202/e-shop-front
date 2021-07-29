@@ -153,7 +153,7 @@ const Arrow = styled.div`
 
 
 
-export const Skeleton = () =>{
+export const SkeletonHome = () =>{
     return(
         <SkeletonStyle><div className="item" ><div className="child" /></div> </SkeletonStyle>
     )
@@ -174,6 +174,38 @@ export const SkeletonStyle = styled.div`
     justify-content:center;
     gap:18px;
     background-color:#fff;
+    .item{
+        overflow: hidden;
+        height:100%;
+        width:100%;
+        position:relative;
+        .child{
+            position:absolute;
+            top:0;
+            width:50%;
+            height:100%;
+            background-image: linear-gradient(to right, rgba(60,60,60,0), rgba(120,120,120,0.2), rgba(60,60,60,0));
+            animation: ${animeSkeleton} 1s linear infinite;
+        }
+    }
+`
+
+
+export const SkeletonCard = () =>{
+    return(
+        <SkeletonCards><div className="item" ><div className="child" /></div> </SkeletonCards>
+    )
+}
+
+export const SkeletonCards = styled.div`
+    width:auto;
+    margin:10px 0px 30px 0px; 
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    background-color:#fff;
+    height: 16rem;
     .item{
         overflow: hidden;
         height:100%;

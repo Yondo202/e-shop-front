@@ -3,6 +3,8 @@ import ReactSlider from "react-slick";
 import styled from 'styled-components';
 import minimize from "@/miscs/minimize"
 import { CustomArrow } from "@/miscs/CustomComp";
+import { SkeletonHome } from "@/miscs/CustomComp"
+
 
 const settings = {
     dots: true,

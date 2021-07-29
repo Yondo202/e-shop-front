@@ -1,5 +1,6 @@
 import React, { lazy, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { SkeletonHome } from "@/miscs/CustomComp"
 
 const importComponent = Name => lazy(()=>import(`../${Name}`));
 
@@ -18,7 +19,10 @@ const ResolveComponent = ({data}) => {
         loadViews()
     },[data])
     return (
-        <React.Suspense fallback={<Container><img src="/img/giff.gif" /></Container>}>
+        <React.Suspense fallback={ 
+            // <Container><img src="/img/spinner.gif" /></Container>
+            <SkeletonHome />
+        }>
             {views}
         </React.Suspense>
     );
@@ -27,7 +31,6 @@ const ResolveComponent = ({data}) => {
 export default ResolveComponent;
 
 const sanitizeComponentName = (name) => {
-
     let final = name.slice(name.indexOf(".")+1, name.length).replace(/-/g, '');
     return capitalizeFirstLetter(final)
 }
@@ -36,13 +39,13 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-const Container = styled.div `
-    background-color:#ffffff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    img{
-        margin-top:-18em;
-    }
-`
+// const Container = styled.div `
+//     background-color:#ffffff;
+//     display:flex;
+//     justify-content:center;
+//     align-items:center;
+//     height:100vh;
+//     img{
+//         margin-top:-18em;
+//     }
+// `
