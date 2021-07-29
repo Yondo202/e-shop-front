@@ -8,8 +8,8 @@ module.exports = (phase) => {
     const env = {
         serverUrl:(()=>{
             if(isDev) return 'http://localhost:1338'
-            if(isProd) return 'https://19e8ebcb75e7.ngrok.io'
-            if(isSTaging) return 'https://19e8ebcb75e7.ngrok.io'
+            if(isProd) return 'https://9325aea03cf4.ngrok.io'
+            if(isSTaging) return 'https://9325aea03cf4.ngrok.io'
             // if(isProd) return 'http://192.168.88.232:1338'
             // if(isSTaging) return 'http://192.168.88.232:1338'
         })(),
