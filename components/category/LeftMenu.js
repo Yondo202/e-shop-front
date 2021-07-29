@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { MdKeyboardArrowRight } from "react-icons/md"
 
 const LeftMenu = ({ data, route }) => {
-
     return (
         <Container>
             <div className="title">{data?.name}</div>
@@ -17,7 +16,7 @@ const LeftMenu = ({ data, route }) => {
                                 <Link href={`/p/${route.id}/${el.slug}`}>
                                     <a className={`Text`}>{el.name} </a>
                                 </Link>
-                                <span>({el.category_details?.length})</span>
+                                {/* <span>({el.category_details?.length})</span> */}
                             </div>
 
                             {route.middle===el.slug?el.category_details.length?<div>

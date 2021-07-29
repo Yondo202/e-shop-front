@@ -7,6 +7,47 @@ import { CustomArrow } from "@/miscs/CustomComp";
 
 const Homecategory = ({ data }) => {
   const sliderRef = React.useRef();
+
+  const settings = {
+        // className: "center",
+        // centerMode: true,
+        dots: true,
+        infinite: TestData > 5,
+        speed: 600,
+        // fade: true,
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        arrows: false,
+        dots:false,
+        rows: 2,
+        responsive: [
+            {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+            }
+            },
+            {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                initialSlide: 2,
+                rows: 1
+            }
+            },
+            {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                rows: 1
+            }
+            }
+        ]
+    };
     return (
         <Container className="container-xxl">
             <InitialTitle data={data?.name} />
@@ -30,61 +71,36 @@ const Container = styled.div`
     margin-bottom:20px;
     .sliderParent{
        position:relative;
-      .slick-list{
-          padding: 15px 0px;
-          .slick-active{
-            padding-right:18px;
-          }
-      }
+      .slick-slider{
+            margin-left:-18px;
+            margin-right:-18px;
+            .slick-list{
+                padding: 15px 0px;
+                .slick-track{
+                    display:flex;
+                    gap:18px;
+                }
+               
+            }
+        }
+        @media (max-width:768px){
+            .slick-slider{
+                margin-left:0px;
+                margin-right:0px;
+                .slick-list{
+                    .slick-track{
+                        display:flex;
+                        gap:0px;
+                    }
+                }
+            }
+            
+        }
     }
    
-    // .slick-active{
-    //   transition:all 0.3s ease;
-    //   &:hover{
-    //       transform:scale(1.1);
-    //   }
-    // }
+   
 `
-const settings = {
-    // className: "center",
-    // centerMode: true,
-    dots: true,
-    infinite: true,
-    speed: 600,
-    // fade: true,
-    slidesToShow: 5,
-    slidesToScroll: 5,
-    arrows: false,
-    dots:false,
-    rows: 2,
-    responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            infinite: true,
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            initialSlide: 2,
-            rows: 1
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            rows: 1
-          }
-        }
-    ]
-};
+
 
 
 

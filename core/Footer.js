@@ -46,7 +46,7 @@ const Footer = ({logo , footerMenu}) => {
                     <div className="menu">
                         {footerMenu?.FooterMenu?.map((el,ind)=>{
                             return(
-                                <Link key={ind} href={el.slug!=="/"&&el.slug?`${process.env.frontUrl+process.env.pageUrl+el.slug}`:`/`}>
+                                <Link key={ind} href={el.slug!=="/"&&el.slug?`/p/${el.slug}`:`/`}>
                                     <a>
                                         <div className="menus">{el.name}</div>
                                     </a>

@@ -9,7 +9,7 @@ const Header = ({ menu }) => {
             <div className="menusPar container-xxl">
                 {menu?.map((el,ind)=>{
                     return( 
-                        <Link key={ind} href={`/p/`+el.slug}>
+                        <Link key={ind} href={`/p/${el.slug}`}>
                             <a className="menus">
                                 <div className="text">{el.name}</div>
                                 <div className="line"/>

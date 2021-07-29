@@ -1,16 +1,25 @@
-import React, { useRef  } from 'react'
+import React, { useRef, useEffect, useState  } from 'react'
 import styled from 'styled-components';
 import ReactSlider from "react-slick";
 import InitialTitle from "components/titles/InitialTitle"
 import InitialCard from "components/Cards/InitialCard"
 import { CustomArrow } from "@/miscs/CustomComp";
+import Axios from 'axios';
 
-const Productslider = ({ data }) => {
+
+
+
+const SameProducts = ({ data }) => {
     const sliderRef = useRef();
+    const [ Data, setData ] = useState([])
+
+    useEffect(()=>{
+        Go();
+    },[data])
 
     const settings = {
         dots: true,
-        infinite: data?.products > 5,
+        infinite: Data.length > 5,
         speed: 600,
         slidesToShow: 5,
         slidesToScroll: 5,
@@ -43,13 +52,23 @@ const Productslider = ({ data }) => {
         ]
     };
 
+    const Go = async () =>{
+        await Axios.get(`${process.env.serverUrl}/category-middles/${data?.category_middles[0]?.id}`).then(res=>{
+            if(res.data.products.length!==0){
+                setData(res.data.products.filter(item=>item.id!==data.id));
+            }
+        })
+    }
+
+    console.log(`data`, data);
+
     return (
-        <Container className="container-xxl">
+        <Container >
             {/* <div className="title">{data.name}</div> */}
-            <InitialTitle data={data.name} />
+            <InitialTitle data={`Ижил төстэй бүтээгдэхүүн`} />
             <div className="sliderParent">
                 <ReactSlider ref={sliderRef} {...settings}>
-                    {data.products.reverse().map((el,ind)=>{
+                    {Data.reverse().map((el,ind)=>{
                         return(
                             <InitialCard key={ind} data={el} />
                         )
@@ -61,7 +80,7 @@ const Productslider = ({ data }) => {
     )
 }
 
-export default Productslider
+export default SameProducts
 
 
 const Container = styled.div`

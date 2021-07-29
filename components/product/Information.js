@@ -3,14 +3,14 @@ import styled from 'styled-components'
 import Comment from "@/components/product/Comment"
 import ProductInfo from "@/components/product/ProductInfo"
 
-const Information = () => {
+const Information = ({ data }) => {
     return (
         <Container className="row">
-            <div className="col-md-6">
+            <div className="col-md-12">
                 <div className="Title"><div className="text">Бүтээгдхүүний мэдээлэл</div></div>
-                <ProductInfo />
+                <ProductInfo data={data} />
             </div>
-            <div className="col-md-6">
+            <div className="col-md-12">
                 <div className="Title"><div className="text">Сэтгэгдэл үлдээх</div></div>
                 <Comment />
             </div>
@@ -19,7 +19,6 @@ const Information = () => {
 }
 
 export default Information
-
 
 const Container = styled.div`
     margin-top: 20px;
@@ -37,7 +36,7 @@ const Container = styled.div`
         justify-content:center;
         .text{
             padding:0px 15px;
-            z-index:2;
+            z-index:1;
             background-color:#fff;
         }
         &:after{

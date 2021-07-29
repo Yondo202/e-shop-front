@@ -138,15 +138,15 @@ const Arrow = styled.div`
         }
     }
     .next{
-        left:10px;
+        left:12px;
         &:hover{
-            left:5px;
+            left:7px;
         }
     }
     .prev{
-        right:19px;
+        right:12px;
         &:hover{
-            right:14px;
+            right:7px;
         }
     }
 `
@@ -190,6 +190,10 @@ export const SkeletonStyle = styled.div`
     }
 `
 
+const animeSkeletonCard = keyframes`
+    0%{ left:-80%; }
+    100%{ left:100% }
+`
 
 export const SkeletonCard = () =>{
     return(
@@ -220,7 +224,7 @@ export const SkeletonCards = styled.div`
             width:50%;
             height:100%;
             background-image: linear-gradient(to right, rgba(60,60,60,0), rgba(120,120,120,0.2), rgba(60,60,60,0));
-            animation: ${animeSkeleton} 1s linear infinite;
+            animation: ${animeSkeletonCard} 0.7s linear infinite;
         }
     }
 `
