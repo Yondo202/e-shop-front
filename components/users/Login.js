@@ -89,7 +89,7 @@ const login = () => {
                     <button type="submit">Үргэлжлүүлэх</button>
                 </div>
             </div>
-            {loading?<LoadingStyle> <img src="/img/giff.gif" /></LoadingStyle>:<></>}
+            {loading?<LoadingStyle> <img src="/img/giff.gif" alt="eshop-giff" /></LoadingStyle>:<></>}
         </form>
         
     )

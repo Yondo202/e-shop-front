@@ -20,7 +20,7 @@ const ResolveComponent = ({data}) => {
     },[data])
     return (
         <React.Suspense fallback={ 
-            <Container><img src="/img/giff.gif" /></Container>
+            <Container><img src="/img/giff.gif" alt="eshop" /></Container>
             // <SkeletonHome />
         }>
             {views}

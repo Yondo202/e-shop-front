@@ -40,7 +40,7 @@ const Comment = () => {
                </div>
             </form>
 
-            {loading?<LoadingStyle> <img src="/img/giff.gif" /></LoadingStyle>:null}
+            {loading?<LoadingStyle> <img src="/img/giff.gif" alt="eshop" /></LoadingStyle>:null}
 
             {/* <div style={alertShow.cond?{right:`0%`, borderBottom:`2px solid ${alertShow.color}`}:{right:`-100%`}} className="Alert">
                 <IoCheckmarkCircleOutline color={alertShow.color} />

@@ -4,7 +4,6 @@ import Root from "@/core/Root";
 import MainSearch from "@/components/search/MainSearch"
 
 const Result = ({ data }) => {
-    console.log(`data`, data)
     return (
         <Root>
             <MainSearch data={data} />

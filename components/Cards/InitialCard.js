@@ -24,7 +24,7 @@ const InitialCard = ({data, center, catigory}) => {
                     onMouseUp={() => handleClick(process.env.productUrl + data?.id, data?.name)}
                 >
                     <div className="imgPar">
-                        <img src={catigory?process.env.serverUrl+data.image[0]?.url:minimize(data.image[0], "thumbnail")} />
+                        <img src={catigory?process.env.serverUrl+data.image[0]?.url:minimize(data.image[0], "thumbnail")} alt="initialCard" />
                     </div>
                     <div className={`textPar`}>
                         <div className="titles">{data?.name}</div>

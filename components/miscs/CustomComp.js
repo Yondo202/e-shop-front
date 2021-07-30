@@ -6,7 +6,7 @@ export const LoadingFull = () => {
     return (
         <LoadingStyle2>
             <div>
-                <img src="/img/giff2.gif" alt="gif" />
+                <img src="/img/giff2.gif" alt="gif" alt="eshop" />
             </div>
         </LoadingStyle2>
     )
@@ -69,7 +69,7 @@ const AlertStyle = styled.div`
 export const Loading =_=> {
     return (
         <LoadingStyle>
-            <img src="/img/giff.gif" />
+            <img src="/img/giff.gif" alt="eshop" />
             <div />
         </LoadingStyle>
     )

@@ -68,8 +68,6 @@ const CatigoryCards = ({ title, data, route }) => {
         setDatas(data?.data?.data?.products);
     }
 
-    
-
     return (
         <ContainerCards>
             <div className="title">{myTitle} <span className="total">{datas.length} бүтээгдэхүүн</span></div>

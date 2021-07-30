@@ -60,7 +60,7 @@ const cart = () => {
                                 return(
                                     <div key={ind} className="products">
                                         <div className="imgPar">
-                                            <img src={process.env.serverUrl + data.image[0]?.url} alt="cart items" />
+                                            <img src={process.env.serverUrl + data.image[0]?.url} alt="cart-items" />
                                         </div>
                                         <div className="Contents">
                                             <Link onClick={()=>console.log('baba')} href={`/product/${data.id}`}><a className="prodTitle"> {data?.name} </a></Link>

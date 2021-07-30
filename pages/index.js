@@ -8,8 +8,8 @@ const Index = ({ data }) => {
     const [loaded, setLoaded] = useState(false);
     useEffect(()=>{
         setLoaded(true);
+        return ()=> loaded
     },[]);
-
 
     return (
         <Root>

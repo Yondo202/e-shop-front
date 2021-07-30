@@ -51,7 +51,7 @@ const Container = styled.div`
         height: 36em;
         width: 35em;
         border-radius: 10px;
-        padding: 3em 4.5em;
+        padding: 3em 4em;
         letter-spacing: 0px;
         .InputParent{
             position: relative;
@@ -72,7 +72,7 @@ const Container = styled.div`
                     outline: none;
                     background-color: ${props=>props.theme.buttonColor};
                     color:white;
-                    border-radius: 5px;
+                    // border-radius: 5px;
                     font-weight: 500;
                 }
             }

@@ -25,7 +25,7 @@ export const ButtonStyleTwo = styled.button`
     letter-spacing:0.2px;
     font-weight:500;
     border:none;
-    padding: 8px 15px;
+    padding: 8px 20px;
     margin-right: 12px;
     flex:1 1 40%;
     // border-radius:5px;
@@ -36,6 +36,12 @@ export const ButtonStyleTwo = styled.button`
     box-shadow:0px 0px 0px 2px ${props=>props.theme.buttonColor} inset;
     outline: 1px solid ${props=>props.theme.buttonColor};
     transition: outline-offset 250ms ease;
+    display:flex;
+    align-items:center;
+    justify-content:space-evenly;
+    svg{
+        font-size:22px;
+    }
     &:hover,
     &:focus{
         outline-offset: -6px;
