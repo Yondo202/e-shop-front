@@ -14,7 +14,7 @@ import TopLoad from "@/miscs/TopLoad"
 import Router from "next/router"
 
 export default function Root(props) {
-    const { headerMenu, logo, menuTop, footerMenu, alert } = useContext(MenuContext);
+    const { headerMenu, logo, footerMenu, alert, cartItems, config } = useContext(MenuContext);
     const [ showBtn, setShowBtn ] = useState(false);
 
     React.useEffect(()=>{
@@ -39,7 +39,7 @@ export default function Root(props) {
         <Body>
             <PreSeo seo={props.seo}/>
             <TopLoad Router={Router} />
-            <HeaderTop menu={menuTop || []} logo={logo}/>
+            <HeaderTop menu={headerMenu || []} logo={logo} config={config} cartItems={cartItems}/>
             <Header menu={headerMenu || []}/>
                 {props.children}
             <MessengerCustomerChat pageId="104975931248820" appId="1410175519375837" />

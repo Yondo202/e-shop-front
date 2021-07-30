@@ -1,12 +1,17 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Ctx from "@/miscs/ContextMenuProvider";
 import Link from "next/link";
 import Axios from 'axios';
 import Highlighter from "react-highlight-words";
+import HamburgerMenu from "react-hamburger-menu"
+import {MainMenu} from "@/components/Mobile/MainMenu"
+import { useRouter } from "next/router"
+import { route } from 'next/dist/next-server/server/router';
 
-const MenuTop = ({ menu, logo }) => {
-    const { cartItems } = useContext(Ctx);
+
+const MenuTop = ({ menu, logo, cartItems, config }) => {
+    const router = useRouter();
+    const [ open, setOpen ] = useState(false);
     const [ inp, setInp ] = useState('');
     const [ search, setSearch ] = useState([]);
     const [ result, setResult ] = useState(false);
@@ -43,9 +48,7 @@ const MenuTop = ({ menu, logo }) => {
 
     const submitHandler = async (e) =>{
         e.preventDefault();
-        await Axios.get(`${process.env.serverUrl}/products?bogino_tailbar_contains=${inp}`).then(res=>{
-           console.log(`res`, res)
-        })
+        router.push(`/search/${inp}`);
     }
 
     return (
@@ -54,7 +57,7 @@ const MenuTop = ({ menu, logo }) => {
                 <div className={`ContentPar container-xxl`}> 
                     <Link href="/">
                         <a  className="logoPar">
-                        <img src="https://atimetoshop.com/wp-content/uploads/2019/06/A-time-to-shop-Logo.png" alt="e-shop.png" />
+                            <img src={process.env.serverUrl+logo?.url} alt="e-shop.png" />
                         </a>
                     </Link>
                     <div className="searchBar">
@@ -97,6 +100,32 @@ const MenuTop = ({ menu, logo }) => {
                     </div>
                     <div className="menus">
 
+                        {config.width<768?(
+                                <>
+                                    <Link href="/cart">
+                                        <a className="content">
+                                            {cartItems.length?<div className="cartCount">{cartItems.length}</div>:null}
+                                            <span className="icon shop" />
+                                            {/* <div className="smtitle">Сагс</div> */}
+                                        </a>
+                                    </Link>
+                                    <div className="content Mobile">
+                                            {/* <span className="icon login" /> */}
+                                            <HamburgerMenu
+                                                isOpen={open}
+                                                menuClicked={()=>setOpen(prev=>!prev)}
+                                                width={20}
+                                                height={16}
+                                                strokeWidth={1.3}
+                                                rotate={0}
+                                                color='black'
+                                                borderRadius={0}
+                                                animationDuration={0.5}
+                                            />
+                                        {/* <div className="smtitle">Сагс</div> */}
+                                    </div>
+                                </>
+                            ):<>
                             <Link href="/cart">
                                 <a className="content">
                                     {cartItems.length?<div className="cartCount">{cartItems.length}</div>:null}
@@ -111,6 +140,9 @@ const MenuTop = ({ menu, logo }) => {
                                     <div className="smtitle">Нэвтрэх</div>
                                 </a>
                             </Link>
+                        </>}
+
+                            
                             
                         {/* {menu.map((el,ind)=>{
                             return(
@@ -122,6 +154,7 @@ const MenuTop = ({ menu, logo }) => {
                     </div>
                 </div>
             </div>
+            {config.width<768?<MainMenu open={open} menu={menu} setOpen={setOpen} />:null}
         </Container>
     )
 }
@@ -135,6 +168,7 @@ const Container = styled.div`
     align-items: center;
     height: 80px;
     .ScrollParent{
+        transition:all 0.3s ease;
         background-color:#ffffff;
         width:100%;
         .ContentPar{
@@ -143,7 +177,8 @@ const Container = styled.div`
             justify-content: space-between;
             .menus{
                 display:flex;
-                gap: 26px;
+                align-items:center;
+                gap: 27px;
                 .content{
                     position:relative;
                     text-decoration:none;
@@ -264,13 +299,33 @@ const Container = styled.div`
         top:0;
         left:0;
         width:100%;
-        z-index:2;
-        padding:10px 0px;
+        z-index:3;
+        padding:9px 0px;
         box-shadow:0px 2px 12px -7px;
     }
     @media (max-width:768px){
-        .searchBar{
-            display:none;
+        height: 60px;
+        .ScrollParent{
+            .ContentPar{
+                .menus{
+                    justify-content:space-between;
+                    gap:30px;
+                    // .Mobile{
+                    //     position:relative;
+                    //     z-index:100;
+                    // }
+                }
+                .logoPar{
+                    width: 5rem;
+                    img{
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+                .searchBar{
+                    display:none;
+                }
+            }
         }
     }
 `

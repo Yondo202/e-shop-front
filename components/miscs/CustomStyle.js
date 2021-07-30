@@ -14,12 +14,14 @@ export const ButtonStyleOne = styled.button`
     height: 40px;
     outline: 1px solid #ffffff;
     transition: outline-offset 250ms ease;
+    width:100%;
     &:hover,
     &:focus{
         outline-offset: -6px;
     }  
 `
 export const ButtonStyleTwo = styled.button`
+    width:100%;
     letter-spacing:0.2px;
     font-weight:500;
     border:none;

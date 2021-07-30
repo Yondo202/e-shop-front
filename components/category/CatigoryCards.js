@@ -10,7 +10,15 @@ const CatigoryCards = ({ title, data, route }) => {
     const [ datas, setDatas ] = useState([]);
     DocumentTitle(myTitle);
 
+    const [ load, setLoad ] = useState(false);
     useEffect(()=>{
+        setTimeout(() => {
+            setLoad(true);
+        }, 400)
+    },[])
+
+    useEffect(()=>{
+        setLoad(false);
         setMyTitle(title);
         setDatas([]);
         if(data?.id){
@@ -50,7 +58,6 @@ const CatigoryCards = ({ title, data, route }) => {
         let data = await axios.post(`${process.env.serverUrl}/graphql`, { query: `query{ products(where:{ category_middles:{ id: [${arr}] } }){
             id name slug price bogino_tailbar image{ url } 
             }}` } )
-
         setDatas(data?.data?.data?.products);
     }
 
@@ -61,14 +68,16 @@ const CatigoryCards = ({ title, data, route }) => {
         setDatas(data?.data?.data?.products);
     }
 
+    
+
     return (
-        <Container>
-            <div className="title">{myTitle}</div>
+        <ContainerCards>
+            <div className="title">{myTitle} <span className="total">{datas.length} бүтээгдэхүүн</span></div>
             <div className="row">
-                {data?.id&&datas.length!==0?datas.map((el,ind)=>{
+                {load!==false || datas.length!==0?datas.map((el,ind)=>{
                     return(
-                        <div key={ind} className="col-md-3 col-sm-4 col-6">
-                            <InitialCard  center={true} data={el} catigory={true} />
+                        <div key={ind} className="col-md-3 col-sm-6 col-6">
+                            <InitialCard  center={false} data={el} catigory={true} />
                         </div>
                     )
                 }):(
@@ -88,22 +97,30 @@ const CatigoryCards = ({ title, data, route }) => {
                     </>
                 )}
             </div>
-            
-        </Container>
+        </ContainerCards>
     )
 }
 
 export default CatigoryCards
 
-const Container = styled.div`
+export const ContainerCards = styled.div`
     background-color: #ffffff;
     padding: 0px 20px;
     padding-bottom: 40px;
     color: ${props=>props.theme.textColor};
+    .col-6{
+        padding:0px 5px;
+    }
     .title{
         font-weight: 500;
         font-size: 17px;
-        padding: 15px 0px;
+        padding: 20px 0px;
+        .total{
+            font-weight:400;
+            margin-left:10px;
+            font-size:14px;
+            color:${props=>props.theme.textColor2};
+        }
     }
 `
 

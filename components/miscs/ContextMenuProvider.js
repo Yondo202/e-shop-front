@@ -8,9 +8,25 @@ import { setCookie, getCookie } from "@/miscs/useCookie";
 // export {MenuProvider, MenuConsumer, MenuContext}
 
 export const MenuStore = (props) =>{
+    const [ config, setConfig ] = useState({});
     const [ alert, setAlert ] = useState({ color: 'white', text: '', cond: false });
     const [ cond, setCond ] = useState(false);
     const [ cartItems, setCardItems ] = useState([]);
+
+
+    useEffect(()=>{
+        // config = {width: window.innerWidth, height: window.innerHeight};
+        setConfig({width: window.innerWidth, height: window.innerHeight});
+        if (typeof window !== 'undefined') {
+            function handleResize() {
+                const config = {width: window.innerWidth, height: window.innerHeight};
+                setConfig(config);
+            }
+            window.addEventListener("resize", handleResize);
+            return () => window.removeEventListener("resize", handleResize);
+        }
+        return config;
+    },[])
 
     useEffect(()=>{
         setCardItems(getCookie(process.env.cart));
@@ -59,9 +75,8 @@ export const MenuStore = (props) =>{
         setCond(prev=>!prev);
     }
 
-
     return(
-        <MenuContext.Provider value={{ ...props.value, listenCart, cartItems, DeleteHandle, alert, alertFunc}} >
+        <MenuContext.Provider value={{ config, ...props.value, listenCart, cartItems, DeleteHandle, alert, alertFunc}} >
             {props.children}
         </MenuContext.Provider>
     )

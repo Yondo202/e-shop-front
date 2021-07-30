@@ -22,6 +22,7 @@ const Productslider = ({ data }) => {
               settings: {
                 slidesToShow: 3,
                 slidesToScroll: 3,
+                infinite: data?.products > 3,
                 infinite: true,
               }
             },
@@ -30,14 +31,16 @@ const Productslider = ({ data }) => {
               settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
-                initialSlide: 2
+                initialSlide: 2,
+                infinite: data?.products > 2,
               }
             },
             {
               breakpoint: 480,
               settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
+                slidesToShow: 2,
+                slidesToScroll:2,
+                infinite: data?.products > 2,
               }
             }
         ]
@@ -80,18 +83,20 @@ const Container = styled.div`
                
             }
         }
-        @media (max-width:768px){
+        
+    }
+    @media (max-width:768px){
+        .sliderParent{
             .slick-slider{
                 margin-left:0px;
                 margin-right:0px;
                 .slick-list{
                     .slick-track{
                         display:flex;
-                        gap:0px;
+                        gap:5px;
                     }
                 }
             }
-            
         }
     }
 `

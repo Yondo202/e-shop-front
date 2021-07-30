@@ -136,7 +136,7 @@ const Container = styled.div`
     }
     .ParentCat{
         padding-right:0;
-        height:16rem;
+        height:16.5rem;
         .content{
             .imgPar{
                 width:100%;
@@ -149,6 +149,9 @@ const Container = styled.div`
                     object-fit: contain;
                 }
             }
+        }
+        @media (max-width:480px){
+            height:14rem;
         }
     }
     @media (max-width:480px){

@@ -42,7 +42,7 @@ export default Slider
 
 const Container = styled.div`
     width:100%;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     cursor:grab;
     position:relative;
     .ImgPar{

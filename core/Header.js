@@ -1,7 +1,6 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Link  from 'next/link';
 import styled from 'styled-components'
-
 
 const Header = ({ menu }) => {
     return (
@@ -46,7 +45,7 @@ const Container = styled.div`
             .line{
                 transition: all 0.3s ease;
                 bottom: 0px;
-                left: 0;
+                left: 50%;
                 position: absolute;
                 height: 3.5px;
                 width: 0%;
@@ -54,6 +53,7 @@ const Container = styled.div`
             }
             &:hover{
                 .line{
+                    left: 0%;
                     width: 100%;
                 }
             }

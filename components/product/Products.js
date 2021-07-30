@@ -225,4 +225,29 @@ const Container = styled.div`
             }
         }
     }
+    @media (max-width:768px){
+        .imageParent{
+            padding-right:0px;
+            margin-bottom:25px;
+            .smImages{
+                height: 14rem;
+            }
+        }
+        .infoParent{
+            min-height:24em;
+            .buttonsPar{
+                align-items:start;
+                flex-direction:column;
+                gap:20px;
+                .AddSector{
+                    .quantity{
+                        font-size:15px;
+                        font-weight:500;
+                        width: 30px;
+                        height: 32px;
+                    }
+                }
+            }
+        }
+    }
 `

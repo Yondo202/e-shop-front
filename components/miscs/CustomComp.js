@@ -149,6 +149,14 @@ const Arrow = styled.div`
             right:7px;
         }
     }
+    @media (max-width:500px){
+        .buttons{
+            padding:5px;
+            svg{
+                font-size:22px;
+            }
+        }
+    }
 `
 
 
@@ -208,7 +216,7 @@ export const SkeletonCards = styled.div`
     justify-content:center;
     gap:18px;
     background-color:#fff;
-    height: 16rem;
+    height: 16.5rem;
     width:100%;
     border:1px solid rgba(0,0,0, 0.157);
     border-radius: 4px;

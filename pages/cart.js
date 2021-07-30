@@ -119,6 +119,7 @@ const Container = styled.div`
     min-height:50rem;
     padding-top:30px;
     padding-bottom:30px;
+    
     .items{
         box-shadow:0px 0px 20px -16px;
         .title{
@@ -267,5 +268,22 @@ const Container = styled.div`
             }
         }
     }
-
+    @media (max-width:768px){
+        .items{
+            .products{
+                .imgPar{
+                    min-width:70px;
+                    width:70px;
+                }
+                .Contents{
+                    padding-left: 15px;
+                    .buttonsPar{
+                        .stock{
+                            display:none;
+                        }
+                    }
+                }
+            }
+        }
+    }
 `

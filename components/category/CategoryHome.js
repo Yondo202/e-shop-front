@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react'
 import MenuContext from "@/miscs/ContextMenuProvider"
 import styled from 'styled-components';
 import LeftMenu from './LeftMenu';
-import axios from "axios"
 import { useRouter } from 'next/router'
 import Link from "next/link"
 import CatigoryCards from "@/components/category/CatigoryCards";
@@ -40,7 +39,7 @@ const CategoryHome = ({ code }) => {
 
 
     return (
-        <Container className="container">
+        <ContainerHome className="container-xxl">
             <div className="smMenus">
                 <Link href="/"><a className="items">Нүүр</a></Link> 
                 <Link href={`/p/${menuData?.slug}`}><a className="items">{menuData?.name}</a></Link>
@@ -51,19 +50,19 @@ const CategoryHome = ({ code }) => {
             </div>
 
             <div style={{marginBottom:50}} className="row">
-                <div className="col-3"><LeftMenu data={menuData} route={{id:id, middle:middle, detail:detail}} /></div>
-                <div className="col-9">
+                <div className="col-md-3 col-12"><LeftMenu data={menuData} route={{id:id, middle:middle, detail:detail}} /></div>
+                <div className="col-md-9 col-12">
                     {/* {props.children} */}
                     <CatigoryCards route={{id:id, middle:middle, detail:detail}} code={code} data={menuData} title={menuData?.name} />
                 </div>
             </div>
-        </Container>
+        </ContainerHome>
     )
 }
 
 export default CategoryHome
 
-const Container = styled.div`
+export const ContainerHome = styled.div`
     .smMenus{
         display: flex;
         margin: 20px 0px;

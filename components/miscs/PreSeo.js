@@ -28,7 +28,7 @@ const PreSeo = ({seo}) => {
             <meta property="og:title" content={ctx.name} />
             <meta name="description" content={ctx.description}/>
             <meta property="og:description" content={ctx.description} />
-            <meta property="og:image" content={'/img/logo.jpg'} />
+            <meta property="og:image" content={'/img/logo.png'} />
             <meta property="og:url" content={process.env.frontUrl + Router.asPath} />
         </Head>
     )

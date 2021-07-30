@@ -24,6 +24,7 @@ const Homecategory = ({ data }) => {
             {
             breakpoint: 1024,
             settings: {
+                infinite: TestData > 3,
                 slidesToShow: 3,
                 slidesToScroll: 3,
                 infinite: true,
@@ -32,6 +33,7 @@ const Homecategory = ({ data }) => {
             {
             breakpoint: 600,
             settings: {
+                infinite: TestData > 2,
                 slidesToShow: 2,
                 slidesToScroll: 2,
                 initialSlide: 2,
@@ -41,8 +43,9 @@ const Homecategory = ({ data }) => {
             {
             breakpoint: 480,
             settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
+                infinite: TestData > 2,
+                slidesToShow: 2,
+                slidesToScroll: 2,
                 rows: 1
             }
             }
@@ -83,21 +86,21 @@ const Container = styled.div`
                
             }
         }
-        @media (max-width:768px){
+    }
+    @media (max-width:768px){
+        .sliderParent{
             .slick-slider{
                 margin-left:0px;
                 margin-right:0px;
                 .slick-list{
                     .slick-track{
                         display:flex;
-                        gap:0px;
+                        gap:5px;
                     }
                 }
             }
-            
         }
     }
-   
    
 `
 

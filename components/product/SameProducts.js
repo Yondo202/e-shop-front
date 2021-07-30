@@ -31,6 +31,7 @@ const SameProducts = ({ data }) => {
               settings: {
                 slidesToShow: 3,
                 slidesToScroll: 3,
+                infinite: Data.length > 3,
                 infinite: true,
               }
             },
@@ -39,14 +40,16 @@ const SameProducts = ({ data }) => {
               settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
-                initialSlide: 2
+                initialSlide: 2,
+                infinite: Data.length > 2,
               }
             },
             {
               breakpoint: 480,
               settings: {
                 slidesToShow: 1,
-                slidesToScroll: 1
+                slidesToScroll: 1,
+                infinite: Data.length > 1,
               }
             }
         ]

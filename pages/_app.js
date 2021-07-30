@@ -17,13 +17,11 @@ class MyApp extends App {
       footerMenu: [],
       logo: null,
       menuTop: [],
-      config: {},
-    //   general: {},
+    //   config: {},
       color: null,
       completelyLoaded: false,
       name: 'e-shop',
       description: 'To be continued...',
-      topLoad:false
     };
     
     async componentDidMount() {
@@ -33,7 +31,7 @@ class MyApp extends App {
         let menus = await axios.post(`${process.env.serverUrl}/graphql`, {query: `query{pages{ id name slug
             category_middles{ id name slug
               category_details{ id name slug } } } }`})
-        const config = {width: window.innerWidth, height: window.innerHeight};
+        // const config = {width: window.innerWidth, height: window.innerHeight};
 
         if(res.data.Header?.pages?.length){
             this.setState({
@@ -43,9 +41,7 @@ class MyApp extends App {
                 logo : res.data.logo,
                 menuTop: res.data.help_menu,
                 color:res?.data?.color,
-                // customTheme:{...state.customTheme, state.customTheme: null},
-                // general: {social: res.data.Social_links,copyright: res.data.Copyright},
-                config
+                // config
             });
         }
         if(res?.data?.color){

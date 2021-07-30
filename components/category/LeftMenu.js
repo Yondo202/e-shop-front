@@ -5,7 +5,7 @@ import { MdKeyboardArrowRight } from "react-icons/md"
 
 const LeftMenu = ({ data, route }) => {
     return (
-        <Container>
+        <ContainerLeftMenu>
             <div className="title">{data?.name}</div>
             <div className="CatigoryMenus">
                 {data?.category_middles?.map((el,ind)=>{
@@ -38,13 +38,13 @@ const LeftMenu = ({ data, route }) => {
                     )
                 })}
             </div>
-        </Container>
+        </ContainerLeftMenu>
     )
 }
 
 export default LeftMenu
 
-const Container = styled.div`
+export const ContainerLeftMenu = styled.div`
     background-color: #ffffff;
     padding: 0px 20px;
     padding-bottom: 40px;
