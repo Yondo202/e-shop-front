@@ -1,33 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useRouter } from "next/router"
 import Axios from 'axios';
+import { setCookie } from "@/miscs/useCookie";
 
 const callback = () => {
     const [ data, setData ] = useState({}); 
     const router = useRouter();
 
-    console.log(`router`, router);
-
-    //end token oo avaad backend ruugee shideed data gaa avii
-    console.log(`object`, router.query.id_token);
-
     useEffect(()=>{
         if(router.query.id_token){
-            provide()
+            provide();
         }
     },[router.query.id_token])
+
     const provide = async () =>{
-    //    await Axios.get(`https://9325aea03cf4.ngrok.io${router.asPath}`).then(res=>{
-    //         console.log(`res final`, res)
-    //     })
-       await Axios.get(`https://9325aea03cf4.ngrok.io/auth/google/callback?access_token=${router.query.access_token}`).then(res=>{
-            console.log(`res final`, res);
-            setData(res.data);
+       await Axios.get(`https://716a633fbd14.ngrok.io/auth/google/callback?access_token=${router.query.access_token}`).then(res=>{
             if(res.data){
+                setCookie("jwt", res.data?.jwt);
+                setCookie(process.env.user, res.data?.user);
+                setData(res.data);
                 window.close();
             }
         })
     }
+    
     return (
         <div>
             <h3>name: {data.user?.username}</h3>

@@ -6,10 +6,12 @@ module.exports = (phase) => {
     const isSTaging = phase === PHASE_PRODUCTION_BUILD && process.env.STAGING !== '1';
     
     const env = {
+        cart:"cart_items",
+        user: "user_info",
         serverUrl:(()=>{
             if(isDev) return 'http://localhost:1338'
-            if(isProd) return 'https://9325aea03cf4.ngrok.io'
-            if(isSTaging) return 'https://9325aea03cf4.ngrok.io'
+            if(isProd) return 'https://716a633fbd14.ngrok.io'
+            if(isSTaging) return 'https://716a633fbd14.ngrok.io'
             // if(isProd) return 'http://192.168.88.232:1338'
             // if(isSTaging) return 'http://192.168.88.232:1338'
         })(),
@@ -24,9 +26,7 @@ module.exports = (phase) => {
         newsUrl:(()=>{
             return '/news/'
         })(),
-        cart:(()=>{
-            return 'cart-items'
-        })()
+       
 
         //infosystem
         // serverUrl: 'http://188.166.188.164:1338',

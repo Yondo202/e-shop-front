@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import Link from "next/link";
 import Axios from 'axios';
 import Highlighter from "react-highlight-words";
-import HamburgerMenu from "react-hamburger-menu"
-import {MainMenu} from "@/components/Mobile/MainMenu"
-import { useRouter } from "next/router"
-import { route } from 'next/dist/next-server/server/router';
+import HamburgerMenu from "react-hamburger-menu";
+import {MainMenu} from "@/components/Mobile/MainMenu";
+import { useRouter } from "next/router";
+import { getCookie } from "@/miscs/useCookie";
 
 
 const MenuTop = ({ menu, logo, cartItems, config }) => {
@@ -16,9 +16,14 @@ const MenuTop = ({ menu, logo, cartItems, config }) => {
     const [ search, setSearch ] = useState([]);
     const [ result, setResult ] = useState(false);
     const [ headClass, setHeadClass ] = useState(false);
+    const [ userInfo, setUserInfo ] = useState({});
 
     useEffect(()=>{
         window.addEventListener("scroll", handleScroll);
+    },[])
+
+    useEffect(()=>{
+        setUserInfo(getCookie(process.env.user));
     },[])
 
     const handleScroll = () => {
@@ -137,7 +142,7 @@ const MenuTop = ({ menu, logo, cartItems, config }) => {
                             <Link href="/login">
                                 <a className="content">
                                     <span className="icon login" />
-                                    <div className="smtitle">Нэвтрэх</div>
+                                    <div className={`smtitle ${userInfo.id?`addName`:``}`}>{userInfo.id?userInfo.username:`Нэвтрэх`}</div>
                                 </a>
                             </Link>
                         </>}
@@ -212,6 +217,13 @@ const Container = styled.div`
                         font-size: 13px;
                         font-weight: 400;
                         margin-top: 2px;
+                    }
+
+                    .addName{
+                        width: 90%;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
                     }
                     .icon{
                         width: 25px;

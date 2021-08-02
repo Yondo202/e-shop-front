@@ -3,9 +3,26 @@ import styled, { keyframes } from "styled-components"
 import Root from "@/core/Root"
 import Login from "@/components/users/Login"
 import SignUp from "@/components/users/SignUp"
+import Router from "next/router"
+import { getCookie } from "@/miscs/useCookie";
 
 const login = () => {
     const [ showLogin, setShowLogin ] = useState(true);
+    const [ signup, setSignUp ] = useState(getCookie(process.env.user));
+    const [ listen, setListen ] = useState(false);
+
+    React.useEffect(() => {
+        if(listen){
+            if(signup.id){
+                    Router.push('/');
+                    setListen(false);
+            }else{
+                const interval = setInterval(() => setSignUp(getCookie(process.env.user)), 300);
+                return () => clearInterval(interval)
+            }
+        }
+    });
+
     return (
         <Root>
             <Container>
@@ -14,7 +31,7 @@ const login = () => {
                         <div onClick={()=>setShowLogin(true)} className={`item ${showLogin&&`Active`}`}>Нэвтрэх</div>
                         <div onClick={()=>setShowLogin(false)}  className={`item ${!showLogin&&`Active`}`}>Бүртгүүлэх</div>
                     </div>
-                    {showLogin?<Login />:<SignUp setShowLogin={setShowLogin} />}
+                    {showLogin?<Login setListen={setListen} />:<SignUp setListen={setListen} setShowLogin={setShowLogin} />}
                 </div>
             </Container>
         </Root>

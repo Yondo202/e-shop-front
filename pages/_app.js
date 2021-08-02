@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import App from "next/app";
+import Router from "next/router"
 import checkLanguage from "@/miscs/checkLanguage";
 import { MenuStore } from "@/miscs/ContextMenuProvider";
 import { ThemeProvider } from "styled-components";
 import * as theme from "@/miscs/theme";
 import axios from "axios";
 // import TagManager from "react-gtm-module";
-
+import { parseCookies } from "nookies"
 
 {/* <TopBarProgress /> */}
 
@@ -58,6 +59,7 @@ class MyApp extends App {
 
     render() {
         const { Component, pageProps, router } = this.props;
+
             return (
                 <ThemeProvider theme={this.state.customTheme}>
                     <MenuStore value={this.state}>
@@ -68,6 +70,35 @@ class MyApp extends App {
                     </MenuStore>
                 </ThemeProvider>
             );
+    }
+}
+
+function redirectUser(ctx, location){
+    if(ctx.req){
+        ctx.res.writeHead(302, { Location: location });
+        ctx.res.end();
+    }else{
+        Router?.push(location);
+    }
+}
+
+
+MyApp.getInitialProps = async({ Component, ctx }) =>{
+    let pageProps = {}
+    const { jwt } = parseCookies(ctx);
+
+    if(jwt){
+        if(ctx.pathname==="/login"){
+            redirectUser(ctx, "/");
+        }
+    }
+
+    if(Component.getInitialProps){
+        pageProps = await Component.getInitialProps(ctx);
+    }
+
+    return{
+        pageProps,
     }
 }
 

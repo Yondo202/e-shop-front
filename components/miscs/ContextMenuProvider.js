@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 const MenuContext = React.createContext();
 import { setCookie, getCookie } from "@/miscs/useCookie";
-
 // const MenuProvider = MenuContext.Provider
 // const MenuConsumer = MenuContext.Consumer
 
@@ -12,7 +11,6 @@ export const MenuStore = (props) =>{
     const [ alert, setAlert ] = useState({ color: 'white', text: '', cond: false });
     const [ cond, setCond ] = useState(false);
     const [ cartItems, setCardItems ] = useState([]);
-
 
     useEffect(()=>{
         // config = {width: window.innerWidth, height: window.innerHeight};
@@ -31,6 +29,8 @@ export const MenuStore = (props) =>{
     useEffect(()=>{
         setCardItems(getCookie(process.env.cart));
     },[cond]);
+
+  
 
     const alertFunc = (color, text, cond)=>{
         setAlert({ color: color, text: text, cond: cond });
@@ -74,6 +74,7 @@ export const MenuStore = (props) =>{
         setCookie(process.env.cart, arr);
         setCond(prev=>!prev);
     }
+
 
     return(
         <MenuContext.Provider value={{ config, ...props.value, listenCart, cartItems, DeleteHandle, alert, alertFunc}} >

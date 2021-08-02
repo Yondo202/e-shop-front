@@ -1,16 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaRegUser } from "react-icons/fa"
 import { BiLock } from "react-icons/bi"
 import { BsEye, BsEyeSlash } from "react-icons/bs"
 import { LoadingStyle } from '../miscs/CustomComp'
+import { ButtonStyleTwo } from "@/miscs/CustomStyle"
+import { FaGooglePlusG } from "react-icons/fa"
+import { InputParent } from "./SignUp"
 
-const login = () => {
+const login = ({setListen}) => {
     const [ showPass, setShowPass ] = useState(false);
     const [ errText, setErrText ] = useState('Мэдээллээ гүйцэд оруулна уу');
     const [ showErr, setShowErr ] = useState(false);
     const [ loading, setLoading ] = useState(false);
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
+
+    useEffect(()=>{
+        setListen(false);
+    },[])
 
     const ClickHandle = async (e) =>{
         e.preventDefault();
@@ -56,9 +63,16 @@ const login = () => {
             }
     }
 
+    const RegisterGmailHandle = () =>{
+        setListen(true);
+        var myWindow = window.open("https://716a633fbd14.ngrok.io/connect/google", "myWindow", "resizable=yes,top=160,left=700,width=500,height=600");
+        myWindow.focus();
+    }
+
+
     return (
         <form onSubmit={ClickHandle}>
-            <div className="InputParent">
+            <InputParent className="InputParent">
                 <div className="inputItem">
                     {/* <div className="title">Нэвтрэх нэр</div> */}
                     <div className="inputPar">
@@ -88,8 +102,11 @@ const login = () => {
                     {showErr&&<div className="ErrTxt">{errText}</div>}
                     <button type="submit">Үргэлжлүүлэх</button>
                 </div>
-            </div>
-            {loading?<LoadingStyle> <img src="/img/giff.gif" alt="eshop-giff" /></LoadingStyle>:<></>}
+
+                <div className="or"><span>Эсвэл</span></div>
+                <ButtonStyleTwo onClick={RegisterGmailHandle} type="button" className="custom"><FaGooglePlusG /> Gmail - ээр нэвтрэх</ButtonStyleTwo>
+                {loading?<LoadingStyle> <img src="/img/giff.gif" alt="eshop-giff" /></LoadingStyle>:<></>}
+            </InputParent>
         </form>
         
     )
