@@ -7,11 +7,11 @@ import { CustomArrow, SkeletonHome } from "@/miscs/CustomComp";
 const settings = {
     dots: true,
     infinite: true,
-    speed: 1000,
+    speed: 500,
     // fade: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    fade:true,
+    fade:false,
     arrows: false,
     dots:false,
     autoplay: true,

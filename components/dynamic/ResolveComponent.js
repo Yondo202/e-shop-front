@@ -5,7 +5,6 @@ import styled from 'styled-components';
 const importComponent = Name => lazy(()=>import(`../${Name}`));
 
 const ResolveComponent = ({data}) => {
-
     const [views, setViews] = useState([]);
 
     useEffect(()=>{
@@ -18,6 +17,7 @@ const ResolveComponent = ({data}) => {
         }
         loadViews()
     },[data])
+
     return (
         <React.Suspense fallback={
             <Container><img src="/img/giff.gif" alt="eshop" /></Container>

@@ -8,7 +8,6 @@ import {MainMenu} from "@/components/Mobile/MainMenu";
 import { useRouter } from "next/router";
 import { getCookie } from "@/miscs/useCookie";
 
-
 const MenuTop = ({ menu, logo, cartItems, config }) => {
     const router = useRouter();
     const [ open, setOpen ] = useState(false);
@@ -146,8 +145,6 @@ const MenuTop = ({ menu, logo, cartItems, config }) => {
                                 </a>
                             </Link>
                         </>}
-
-                            
                             
                         {/* {menu.map((el,ind)=>{
                             return(
@@ -156,6 +153,7 @@ const MenuTop = ({ menu, logo, cartItems, config }) => {
                                 </div>
                             )
                         })} */}
+
                     </div>
                 </div>
             </div>
@@ -220,7 +218,7 @@ const Container = styled.div`
                         margin-top: 2px;
                     }
                     .addName{
-                        width: 90%;
+                        max-width:60px;
                         overflow: hidden;
                         white-space: nowrap;
                         text-overflow: ellipsis;
@@ -234,7 +232,7 @@ const Container = styled.div`
                         transition: all 200ms ease-in-out 0s;
                     }
                     .login{
-                        background-image: url('/img/man2.svg');
+                        background-image: url('/img/profile.svg');
                     }
                     .shop{
                         background-image: url('/img/shop2.svg');

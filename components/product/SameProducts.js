@@ -6,9 +6,6 @@ import InitialCard from "components/Cards/InitialCard"
 import { CustomArrow } from "@/miscs/CustomComp";
 import Axios from 'axios';
 
-
-
-
 const SameProducts = ({ data }) => {
     const sliderRef = useRef();
     const [ Data, setData ] = useState([])
@@ -63,8 +60,6 @@ const SameProducts = ({ data }) => {
         })
     }
 
-    console.log(`data`, data);
-
     return (
         <Container >
             {/* <div className="title">{data.name}</div> */}
@@ -79,6 +74,7 @@ const SameProducts = ({ data }) => {
                 </ReactSlider>
                 {data.length>3?<CustomArrow sliderRef={sliderRef} />:null}
             </div>
+
         </Container>
     )
 }

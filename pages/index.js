@@ -20,7 +20,6 @@ const Index = ({ data }) => {
 export default Index;
 
 export async function getServerSideProps({req}){
-   
     let res = await checkLanguage('/home', req, true);
     return {props: {data: res.data}}
 }

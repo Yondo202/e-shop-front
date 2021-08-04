@@ -6,6 +6,9 @@ import { LoadingStyle } from '../miscs/CustomComp'
 import { ButtonStyleTwo } from "@/miscs/CustomStyle"
 import { FaGooglePlusG } from "react-icons/fa"
 import { InputParent } from "./SignUp"
+import Router from "next/router"
+import axios from "axios"
+import { setCookie } from "@/miscs/useCookie";
 
 const login = ({setListen}) => {
     const [ showPass, setShowPass ] = useState(false);
@@ -35,31 +38,24 @@ const login = ({setListen}) => {
                 setTimeout(() => {  setShowErr(false); }, 5000)
             }else{
                 setLoading(true);
+                await axios.post(`${process.env.serverUrl}/auth/local`, loginInfo ).then(res=>{
+                    if(res.data){
+                        setCookie("jwt", res.data?.jwt);
+                        setCookie(process.env.user, res.data?.user);
+                        setLoading(false);
+                        Router.push("/");
+                    }
+                }).catch(err=>{
+                    if(err){
+                        setLoading(false);
+                        setErrText('Нууц үг болон нэвтрэх нэрээ шалгана уу');
+                        setShowErr(true);
+                        setTimeout(() => {  setShowErr(false); }, 6000);
+                    }
+                })
                 setTimeout(() => {
                     setLoading(false);
-                }, 3000)
-                
-                // await axios.post(`${process.env.serverUrl}/auth/local`, loginInfo )
-                // .then(res=>{
-                //     console.log(`res`, res);
-                //     if(res.data.user.admin_confirmed){
-                //         setCookie(null, 'jwt', res.data.jwt,{ maxAge: 30 * 24 * 60 * 60, path:"/" });
-                //         setCookie(null, 'username', res.data.user.username, { maxAge: 30 * 24 * 60 * 60, path:"/" });
-                //         setCookie(null, 'role', res.data.user.role.type, { maxAge: 30 * 24 * 60 * 60, path:"/" });
-                //         setCookie(null, 'id', res.data.user.id, { maxAge: 30 * 24 * 60 * 60, path:"/" });
-                //         setCookie(null, 'email', res.data.user.email, { maxAge: 30 * 24 * 60 * 60, path:"/" });
-                //         Router.push('/');
-                //     }else{
-                //         alertFunc('green', "Зөвшөөрөл хүлээнэ үү...", true);
-                //         Router.push(Router.asPath);
-                //     }
-                //     setLoading(false);
-                // }).catch(err=>{
-                //     setLoading(false);
-                //     setErrText('Нууц үг болон нэвтрэх нэрээ шалгана уу');
-                //     setShowErr(true);
-                //     setTimeout(() => {  setShowErr(false); }, 5000)
-                // })
+                }, 5000)
             }
     }
 
@@ -68,7 +64,6 @@ const login = ({setListen}) => {
         var myWindow = window.open("https://716a633fbd14.ngrok.io/connect/google", "myWindow", "resizable=yes,top=160,left=700,width=500,height=600");
         myWindow.focus();
     }
-
 
     return (
         <form onSubmit={ClickHandle}>

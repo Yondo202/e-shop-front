@@ -46,10 +46,6 @@ const SignUp = ({ setListen }) => {
                 setLoading(true);
                 await axios.post(`${process.env.serverUrl}/auth/local/register`, loginInfo )
                 .then(res=>{
-                    console.log(`res`, res);
-                    // Router.push(router.asPath);
-                    // alertFunc('green', "Амжилттай нэвтэрлээ", true);
-                    // setShowLogin(true);
                     if(res.data){
                         setCookie("jwt", res.data?.jwt);
                         setCookie(process.env.user, res.data?.user);

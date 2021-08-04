@@ -56,10 +56,8 @@ class MyApp extends App {
         // TagManager.initialize(tagManagerArgs);
     }
 
-
     render() {
         const { Component, pageProps, router } = this.props;
-
             return (
                 <ThemeProvider theme={this.state.customTheme}>
                     <MenuStore value={this.state}>
