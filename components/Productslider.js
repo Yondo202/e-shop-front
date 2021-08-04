@@ -54,7 +54,7 @@ const Productslider = ({ data }) => {
                 <ReactSlider ref={sliderRef} {...settings}>
                     {data.products.reverse().map((el,ind)=>{
                         return(
-                            <InitialCard key={ind} data={el} />
+                            <InitialCard center={true} key={ind} data={el} />
                         )
                     })}
                 </ReactSlider>

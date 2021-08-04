@@ -1,5 +1,4 @@
 import React,{ useState } from 'react'
-import Link from 'next/link'
 import styled from 'styled-components'
 import minimize from "@/miscs/minimize"
 import { NumberComma } from "components/miscs/NumberComma"
@@ -79,6 +78,7 @@ const Container = styled.div`
                 padding: 6px 12px;
                 align-self: flex-start;
                 .titles{
+                    margin-bottom: 8px;
                     width: 100%;
                     font-weight: 600;
                     color: ${props=>props.theme.textColor3};
