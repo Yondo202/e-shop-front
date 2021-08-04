@@ -15,27 +15,32 @@ const InitialCard = ({data, center, catigory}) => {
             router.push(el);
         }
     }
+    const AddCart = () =>{
+        console.log("bbbbbbbbb");
+    }
 
     return (
         <Container>
             <div className={catigory?`Parent ParentCat`:`Parent`}>
                 <div className={`content ${center?`Center`:``} ${catigory?`Catigory`:``}` } 
-                    onMouseMove={() => setMouseMoved(true)}
-                    onMouseDown={() => setMouseMoved(false)}
-                    onMouseUp={() => handleClick(process.env.productUrl + data?.id, data?.name)}
                 >
                     <div className="imgPar">
-                        <img src={catigory?process.env.serverUrl+data.image[0]?.url:minimize(data.image[0], "thumbnail")} alt="initialCard" />
-                        <div className="addCard">
-                            Сагсанд хийх
-                        </div>
+                        <img src={catigory?process.env.serverUrl+data.image[0]?.url:minimize(data.image[0], "thumbnail")} alt="initialCard"
+                            onMouseMove={() => setMouseMoved(true)}
+                            onMouseDown={() => setMouseMoved(false)}
+                            onMouseUp={() => handleClick(process.env.productUrl + data?.id, data?.name)} />
+                        <div onClick={AddCart} className="addCard">Сагсанд хийх</div>
                         <div className="rightIcons">
                             <div className="iconPar"><AiOutlineSearch /></div>
                             <div className="iconPar"><FiHeart /></div>
                         </div>
                     </div>
                     <div className={`textPar`}>
-                        <div className="titles">{data?.name}</div>
+                        <div className="titles" 
+                            onMouseMove={() => setMouseMoved(true)}
+                            onMouseDown={() => setMouseMoved(false)}
+                            onMouseUp={() => handleClick(process.env.productUrl + data?.id, data?.name)}
+                        >{data?.name}</div>
                         {/* <div className="desc">{data?.bogino_tailbar}</div> */}
                         <div className="priceSector">
                             <div className="price">{NumberComma(data?.price)}</div>
@@ -159,6 +164,7 @@ const Container = styled.div`
                 padding: 6px 12px;
                 align-self: flex-start;
                 .titles{
+                    transition:all 0.3s ease;
                     margin-bottom: 8px;
                     width: 100%;
                     font-weight: 600;
@@ -169,6 +175,9 @@ const Container = styled.div`
                     text-overflow: ellipsis;
                     text-transform: uppercase;
                     line-height: normal;
+                    &:hover{
+                        color: ${props=>props.theme.mainColor};
+                    }
                 }
                 .desc{
                     line-height: normal;
