@@ -77,7 +77,7 @@ const SameProducts = ({ data }) => {
                         )
                     })}
                 </ReactSlider>
-                <CustomArrow sliderRef={sliderRef} />
+                {data.length>3?<CustomArrow sliderRef={sliderRef} />:null}
             </div>
         </Container>
     )
