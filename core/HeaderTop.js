@@ -167,14 +167,14 @@ const MenuTop = ({ menu, logo, cartItems, config }) => {
 export default MenuTop
 
 const Container = styled.div`
-    background-color: #ffffff;
+    background-color: ${props=>props.theme.mainColor};
     border-bottom: 1px solid rgba(0,0,0,0.057);
     display: flex;
     align-items: center;
     height: 80px;
     .ScrollParent{
         transition:all 0.3s ease;
-        background-color:#ffffff;
+        background-color: ${props=>props.theme.mainColor};
         width:100%;
         .ContentPar{
             display:flex;
@@ -209,16 +209,16 @@ const Container = styled.div`
                     }
                     &:hover{
                         .smtitle{
-                            color:${props=>props.theme.mainColor};
+                            color:rgba(255,255,255,0.7);
                         }
                     }
                     .smtitle{
-                        color: rgb(102, 102, 102);
+                        // color: rgb(102, 102, 102);
+                        color: #fff;
                         font-size: 13px;
                         font-weight: 400;
                         margin-top: 2px;
                     }
-
                     .addName{
                         width: 90%;
                         overflow: hidden;
@@ -288,7 +288,7 @@ const Container = styled.div`
                 .myInp{
                     width: 100%;
                     padding:8px 10px;
-                    border-radius: 4px;
+                    border-radius: 50px;
                     border:1px solid rgba(0,0,0,0.3);
                     background-color:${props=>props.theme.bodyColor};
                     color: rgb(102, 102, 102);

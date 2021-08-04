@@ -88,7 +88,6 @@ const cart = () => {
                                 )
                             })}
                         </div>
-
                     </div>
                     <div className="col-md-4 col-12">
                         <div className="items">

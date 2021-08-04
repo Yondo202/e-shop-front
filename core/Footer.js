@@ -81,7 +81,7 @@ const Footer = ({logo , footerMenu}) => {
                 </div>
             </div>
             <div className="copyRight">
-                <div className="container-xxl">{footerMenu?.Copyright}</div>
+                <div className="container-xxl texts">{footerMenu?.Copyright}</div>
             </div>
         </Container>
     )
@@ -91,19 +91,20 @@ export default Footer
 
 const Container = styled.div`
     // background-color:black;
-    background-color:#ffffff;
+    background-color:${props=>props.theme.mainColor};
     // color:#a9a9ab !important;
-    color:${props=>props.theme.textColor} !important;
+    // color:${props=>props.theme.textColor} !important;
+    color:#ffffff !important;
     font-size:14px;
     border-top:2px solid ${props=>props.theme.mainColor};
     .copyRight{
         border-top:1px solid rgba(0,0,0,0.1);
         padding:10px 0px;
         background-color:#ffffff;
-        .container{
+        .texts{
             font-size: 0.8rem;
-            opacity: .4;
-            color: #fff;
+            // opacity: .4;
+            color: ${props=>props.theme.mainColor};
         }
     }
     .SectorParent{
@@ -128,7 +129,7 @@ const Container = styled.div`
                 text-decoration: none !important;
             }
             .title{
-                color:${props=>props.theme.mainColor};
+                color:#ffffff;
                 margin-bottom:25px;
             }
             .menu{
@@ -137,7 +138,7 @@ const Container = styled.div`
                     transition:all 0.3s ease;
                     margin-bottom:14px;
                     &:hover{
-                        color: ${props=>props.theme.mainColor};
+                        opacity:0.8;
                     }
                 }
             }
@@ -175,7 +176,8 @@ const Container = styled.div`
                     justify-content:center;
                     cursor: pointer;
                     margin-left: 15px;
-                    background: rgba(0,0,0,.15);
+                    // background: rgba(0,0,0,.15);
+                    background: #fff;
                     -webkit-border-radius: 50%;
                     border-radius: 50%;
                     color: #000;

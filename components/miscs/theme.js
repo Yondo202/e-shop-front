@@ -25,4 +25,5 @@ export const buttonColor = "rgb(21,58,91)";
 
 export const headerLogo = "200px";
 
-export const bodyColor = "#f1f3f5"
+// export const bodyColor = "#f1f3f5"
+export const bodyColor = "#edf4f9"

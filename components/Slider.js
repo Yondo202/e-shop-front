@@ -46,6 +46,7 @@ const Container = styled.div`
     cursor:grab;
     position:relative;
     .ImgPar{
+        border-radius:0px 0px 26px 26px;
         width: 100%;
         overflow: hidden;
         outline: none !important;

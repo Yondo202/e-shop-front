@@ -42,8 +42,8 @@ const Products = ({ data }) => {
                         <Magnifier
                             src={process.env.serverUrl + images?.url}
                             zoomFactor={0.7}
-                            mgWidth={250}
-                            mgHeight={250}
+                            mgWidth={300}
+                            mgHeight={300}
                             //  width={500}
                         />
                     </div>
@@ -104,7 +104,7 @@ const Container = styled.div`
         justify-content:space-between;
         padding-right:18px;
         .smImages{
-            width:18%;
+            width:16%;
             height:26rem;
             padding:10px 0px;
             overflow-y:scroll;
@@ -129,7 +129,7 @@ const Container = styled.div`
             }
         }
         .Images{
-            width: 78%;
+            width: 80%;
             height: 100%;
             display: flex;
             align-items: center;
