@@ -4,7 +4,6 @@ import Ctx from "@/miscs/ContextMenuProvider";
 import { NumberComma } from "components/miscs/NumberComma";
 import { ButtonStyleOne, ButtonStyleTwo } from "components/miscs/CustomStyle";
 import Magnifier from "react-magnifier";
-import Information from "@/components/product/Information";
 import minimize from "@/miscs/minimize"
 
 const Products = ({ data }) => {
@@ -81,7 +80,6 @@ const Products = ({ data }) => {
                             <ButtonStyleOne >Худалдан авах</ButtonStyleOne>
                         </div>
                     </div>
-                    <Information data={data} />
                 </div>
                 
             </div>

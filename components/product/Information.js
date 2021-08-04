@@ -6,11 +6,11 @@ import ProductInfo from "@/components/product/ProductInfo"
 const Information = ({ data }) => {
     return (
         <Container className="row">
-            <div className="col-md-12">
+            <div className="col-md-6 col-12">
                 <div className="Title"><div className="text">Бүтээгдхүүний мэдээлэл</div></div>
                 <ProductInfo data={data} />
             </div>
-            <div className="col-md-12">
+            <div className="col-md-6 col-12">
                 <div className="Title"><div className="text">Сэтгэгдэл үлдээх</div></div>
                 <Comment />
             </div>

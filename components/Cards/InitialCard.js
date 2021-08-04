@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import minimize from "@/miscs/minimize"
 import { NumberComma } from "components/miscs/NumberComma"
 import { useRouter } from 'next/router';
+import { AiOutlineSearch } from "react-icons/ai"
+import { FiHeart } from "react-icons/fi"
 
 const InitialCard = ({data, center, catigory}) => {
     const router = useRouter();
@@ -24,6 +26,13 @@ const InitialCard = ({data, center, catigory}) => {
                 >
                     <div className="imgPar">
                         <img src={catigory?process.env.serverUrl+data.image[0]?.url:minimize(data.image[0], "thumbnail")} alt="initialCard" />
+                        <div className="addCard">
+                            Сагсанд хийх
+                        </div>
+                        <div className="rightIcons">
+                            <div className="iconPar"><AiOutlineSearch /></div>
+                            <div className="iconPar"><FiHeart /></div>
+                        </div>
                     </div>
                     <div className={`textPar`}>
                         <div className="titles">{data?.name}</div>
@@ -45,19 +54,37 @@ export default InitialCard
 const Container = styled.div`
     transition:all 0.3s ease;
     &:hover{
-        transform:scale(1.1);
+        // transform:scale(1.1);
+        .Parent{
+            .content{
+                .imgPar{
+                    .addCard{
+                        opacity:1;
+                        bottom:0px;
+                    }
+                    .rightIcons{
+                        opacity:1;
+                        .iconPar{
+                            transform:scale(1);
+                        }
+                    }
+                }
+            }
+        }
     }
     .Parent{
         // padding-right:18px;
-        height: 16rem;
+        height: 18rem;
         margin-bottom:15px;
         .content{
+            position:relative;
+            z-index:1;
             text-decoration: none;
             height: 100%;
             cursor: pointer;
-            border:1px solid rgba(0,0,0, 0.157);
+            // border:1px solid rgba(0,0,0, 0.157);
+            // box-shadow:1px 1px 10px -8px;
             border-radius: 4px;
-            box-shadow:1px 1px 10px -8px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -66,11 +93,65 @@ const Container = styled.div`
             background-color: #ffffff;
             padding: 8px 0px;
             .imgPar{
+                width:100%;
+                position:relative;
+                overflow:hidden;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                min-height:200px;
+                .addCard{
+                    transition: all 0.3s ease;
+                    opacity:0;
+                    position:absolute;
+                    bottom:-10px;
+                    left:0;
+                    background-color:rgba(0,0,0,0.8);
+                    width:100%;
+                    text-align:center;
+                    color:#fff;
+                    padding:10px 0px;
+                    font-weight:500;
+                    &:hover{
+                        background-color:rgba(0,0,0,1);
+                    }
+                }
+                .rightIcons{
+                    z-index:3;
+                    transition:opacity 0.3s ease;
+                    opacity:0;
+                    transition: all 0.3s ease;
+                    position:absolute;
+                    top:15px;
+                    right:15px;
+                    display:flex;
+                    flex-direction:column;
+                    gap:10px;
+                    .iconPar{
+                        transition:all 0.3s ease;
+                        transform:scale(0.8);
+                        border-radius:50%;
+                        padding:8px;
+                        background-color:#fff;
+                        box-shadow:0 0 15px -7px;
+                        svg{
+                            font-size:20px;
+                        }
+                        &:hover{
+                            background-color:black;
+                            svg{
+                                color:#fff;
+                            }
+                        }
+                    }
+                    
+                }
                 img{
-                    width: 100%;
+                    width: 70%;
                     height: auto;
                     object-fit: contain;
                 }
+                
             }
             .textPar{
                 width:100%;
@@ -136,7 +217,7 @@ const Container = styled.div`
     }
     .ParentCat{
         padding-right:0;
-        height:16.5rem;
+        height:17rem;
         .content{
             .imgPar{
                 width:100%;
@@ -157,6 +238,7 @@ const Container = styled.div`
     @media (max-width:480px){
        .Parent{
             padding-right:0px;
+            height: 16.5rem;
        }
     }
 `
