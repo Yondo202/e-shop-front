@@ -9,7 +9,6 @@ import { FiHeart } from "react-icons/fi"
 const InitialCard = ({data, center, catigory}) => {
     const router = useRouter();
     const [mouseMoved, setMouseMoved] = useState(false);
-
     const handleClick =(el) =>{
         if (!mouseMoved) {
             router.push(el);
@@ -18,7 +17,6 @@ const InitialCard = ({data, center, catigory}) => {
     const AddCart = () =>{
         console.log("bbbbbbbbb");
     }
-
     return (
         <Container>
             <div className={catigory?`Parent ParentCat`:`Parent`}>
