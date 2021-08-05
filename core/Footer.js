@@ -1,31 +1,3 @@
-// import React, { useContext } from 'react';
-// import styled from 'styled-components';
-// import MenuContext from 'components/miscs/ContextMenuProvider';
-
-
-// const Footer = () => {
-//     const { footerMenu } = useContext(MenuContext);
-
-//     console.log(`footerMenu`, footerMenu);
-
-//     return (    
-//         <Container>
-//             <h6>e-shop.mn</h6>
-//         </Container>
-//     );
-// };
-
-// export default Footer;
-
-// const Container = styled.div`
-//    text-align: center;
-//    border-top: 1px solid rgba(0,0,0,0.1);
-//    padding: 10px 0px;
-//    h6{
-//        margin-bottom: 0px;
-//    }
-// `
-
 import React from 'react'
 import Link from "next/link"
 import styled from 'styled-components'
@@ -104,7 +76,7 @@ const Container = styled.div`
         .texts{
             font-size: 0.8rem;
             // opacity: .4;
-            color: ${props=>props.theme.mainColor};
+            color: #0255b5;
         }
     }
     .SectorParent{

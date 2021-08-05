@@ -48,7 +48,7 @@ module.exports = (phase) => {
         // newsUrl: '/news/',
     }
     return{
-        env,
+        env
     }
 }
 

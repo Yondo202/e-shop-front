@@ -6,7 +6,6 @@ import Information from "@/components/product/Information";
 
 
 const ProductMain = ({data}) => {
-
     return (
         <Container className="container-xxl">
             <Products data={data} />
