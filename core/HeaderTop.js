@@ -36,7 +36,7 @@ const MenuTop = ({ menu, logo, cartItems, config }) => {
     const LogOutHandle = () =>{ 
         removeCookie(process.env.user);
         removeCookie('jwt');
-        router.push(router.asPath);
+        router.push('/login');
     }
 
     const handleScroll = () => {
