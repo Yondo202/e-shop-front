@@ -21,6 +21,7 @@ export default function Root(props) {
 
     React.useEffect(()=>{
         window.addEventListener("scroll", handleScroll);
+        return () => window.addEventListener("scroll", handleScroll);
     },[])
 
     // scroll.scrollTo(0);

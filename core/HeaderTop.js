@@ -25,6 +25,7 @@ const MenuTop = ({ menu, logo, cartItems, config }) => {
 
     useEffect(()=>{
         window.addEventListener("scroll", handleScroll);
+        return ()=>window.addEventListener("scroll", handleScroll);
     },[])
 
     useEffect(()=>{

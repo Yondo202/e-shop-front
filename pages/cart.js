@@ -24,7 +24,7 @@ const cart = () => {
     },[cartItems])
 
     const FetchData = async () =>{
-        cartItems.forEach(item=>{
+       await cartItems.forEach(item=>{
             getProduct(item);
         })
     }

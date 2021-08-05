@@ -13,13 +13,18 @@ TopBarProgress.config({
 const TopLoad =({Router})=> {
     const [ topLoad, setTopLoad ] = React.useState(false);
     React.useEffect(()=>{
-        Router.events.on('routeChangeStart', (url)=>{
+        RouteHandle();
+    },[])   
+
+    const RouteHandle = async () =>{
+       await Router.events.on('routeChangeStart', (url)=>{
             setTopLoad(true)
         });
-        Router.events.on('routeChangeComplete', (url)=>{
+
+       await Router.events.on('routeChangeComplete', (url)=>{
             setTopLoad(false);
         })
-    },[])
+    }
 
     return (
         <div>

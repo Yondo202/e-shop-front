@@ -51,6 +51,7 @@ const Homecategory = ({ data }) => {
             }
         ]
     };
+    
     return (
         <Container className="container-xxl">
             <InitialTitle data={data?.name} />
