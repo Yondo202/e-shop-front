@@ -71,7 +71,7 @@ const Homecategory = ({ data }) => {
 export default Homecategory
 
 const Container = styled.div`
-    margin-bottom:20px;
+    margin-bottom:30px;
     .sliderParent{
        position:relative;
       .slick-slider{

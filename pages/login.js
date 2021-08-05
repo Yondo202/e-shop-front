@@ -60,7 +60,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     .ContentSector{
-        border-top:3.5px solid ${props=>props.theme.mainColor};
+        // border-top:3.5px solid ${props=>props.theme.mainColor};
         animation: ${Animate2} 0.6s ease;
         box-shadow:1px 1px 25px -17px;
         transition: all 0.2s ease;

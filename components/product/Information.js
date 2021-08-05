@@ -25,6 +25,7 @@ const Container = styled.div`
     padding-top: 15px;
     padding-bottom: 15px;
     background-color: #ffffff;
+    margin-bottom:30px;
     .Title{
         position:relative;
         text-align:center;

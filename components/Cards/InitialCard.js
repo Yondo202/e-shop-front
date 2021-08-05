@@ -1,5 +1,6 @@
-import React,{ useState } from 'react'
+import React,{ useState, useContext } from 'react'
 import styled from 'styled-components'
+import Ctx from "@/miscs/ContextMenuProvider";
 import minimize from "@/miscs/minimize"
 import { NumberComma } from "components/miscs/NumberComma"
 import { useRouter } from 'next/router';
@@ -7,48 +8,50 @@ import { AiOutlineSearch } from "react-icons/ai"
 import { FiHeart } from "react-icons/fi"
 
 const InitialCard = ({data, center, catigory}) => {
+    const { listenCart, HandleModal } = useContext(Ctx);
     const router = useRouter();
     const [mouseMoved, setMouseMoved] = useState(false);
+
     const handleClick =(el) =>{
         if (!mouseMoved) {
             router.push(el);
         }
     }
     const AddCart = () =>{
-        console.log("bbbbbbbbb");
+        listenCart(data, 1);
     }
+
     return (
-        <Container>
-            <div className={catigory?`Parent ParentCat`:`Parent`}>
-                <div className={`content ${center?`Center`:``} ${catigory?`Catigory`:``}` } 
-                >
-                    <div className="imgPar">
-                        <img src={catigory?process.env.serverUrl+data.image[0]?.url:minimize(data.image[0], "thumbnail")} alt="initialCard"
-                            onMouseMove={() => setMouseMoved(true)}
-                            onMouseDown={() => setMouseMoved(false)}
-                            onMouseUp={() => handleClick(process.env.productUrl + data?.id, data?.name)} />
-                        <div onClick={AddCart} className="addCard">Сагсанд хийх</div>
-                        <div className="rightIcons">
-                            <div className="iconPar"><AiOutlineSearch /></div>
-                            <div className="iconPar"><FiHeart /></div>
+            <Container>
+                <div className={catigory?`Parent ParentCat`:`Parent`}>
+                    <div className={`content ${center?`Center`:``} ${catigory?`Catigory`:``}` } 
+                    >
+                        <div className="imgPar">
+                            <img src={catigory?process.env.serverUrl+data.image[0]?.url:minimize(data.image[0], "thumbnail")} alt="initialCard"
+                                onMouseMove={() => setMouseMoved(true)}
+                                onMouseDown={() => setMouseMoved(false)}
+                                onMouseUp={() => handleClick(process.env.productUrl + data?.id, data?.name)} />
+                            <div onClick={AddCart} className="addCard">Сагсанд хийх</div>
+                            <div className="rightIcons">
+                                <div onClick={()=>HandleModal(data, true)} className="iconPar"><AiOutlineSearch /></div>
+                                <div className="iconPar"><FiHeart /></div>
+                            </div>
                         </div>
-                    </div>
-                    <div className={`textPar`}>
-                        <div className="titles" 
-                            onMouseMove={() => setMouseMoved(true)}
-                            onMouseDown={() => setMouseMoved(false)}
-                            onMouseUp={() => handleClick(process.env.productUrl + data?.id, data?.name)}
-                        >{data?.name}</div>
-                        {/* <div className="desc">{data?.bogino_tailbar}</div> */}
-                        <div className="priceSector">
-                            <div className="price">{NumberComma(data?.price)}</div>
-                            <div className="salePrice">{NumberComma(data?.sale_price)}</div>
+                        <div className={`textPar`}>
+                            <div className="titles" 
+                                onMouseMove={() => setMouseMoved(true)}
+                                onMouseDown={() => setMouseMoved(false)}
+                                onMouseUp={() => handleClick(process.env.productUrl + data?.id, data?.name)}
+                            >{data?.name}</div>
+                            {/* <div className="desc">{data?.bogino_tailbar}</div> */}
+                            <div className="priceSector">
+                                <div className="price">{NumberComma(data?.price)}</div>
+                                <div className="salePrice">{NumberComma(data?.sale_price)}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </Container>
-        
+            </Container>
     )
 }
 

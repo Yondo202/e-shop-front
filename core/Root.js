@@ -12,9 +12,11 @@ import { Alert } from "@/components/miscs/CustomComp"
 import MessengerCustomerChat from 'react-messenger-customer-chat';
 import TopLoad from "@/miscs/TopLoad"
 import Router from "next/router"
+import ModalCard from "@/components/Cards/ModalCard"
+import CartNotification from "@/components/Cards/CartNotification"
 
 export default function Root(props) {
-    const { headerMenu, logo, footerMenu, alert, cartItems, config } = useContext(MenuContext);
+    const { headerMenu, logo, footerMenu, alert, cartItems, config , showModal, setShowModal, cartAdd , setCartAdd} = useContext(MenuContext);
     const [ showBtn, setShowBtn ] = useState(false);
 
     React.useEffect(()=>{
@@ -52,6 +54,8 @@ export default function Root(props) {
             </div>}  */}
 
             <Alert alert={alert} />
+            <ModalCard data={showModal} setShowModal={setShowModal} />
+            <CartNotification cartAdd={cartAdd} setCartAdd={setCartAdd} />
         </Body>
     )
 }

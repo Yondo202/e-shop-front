@@ -7,7 +7,8 @@ import HamburgerMenu from "react-hamburger-menu";
 import {MainMenu} from "@/components/Mobile/MainMenu";
 import { useRouter } from "next/router";
 import { getCookie } from "@/miscs/useCookie";
-
+import { VscHeart } from "react-icons/vsc"
+ 
 const MenuTop = ({ menu, logo, cartItems, config }) => {
     const router = useRouter();
     const [ open, setOpen ] = useState(false);
@@ -130,20 +131,30 @@ const MenuTop = ({ menu, logo, cartItems, config }) => {
                                     </div>
                                 </>
                             ):<>
-                            <Link href="/cart">
+                            <Link href="/login">
                                 <a className="content">
-                                    {cartItems.length?<div className="cartCount">{cartItems.length}</div>:null}
-                                    <span className="icon shop" />
-                                    <div className="smtitle">Сагс</div>
+                                    {/* {cartItems.length?<div className="cartCount">{cartItems.length}</div>:null} */}
+                                    {/* <span className="icon shop" /> */}
+                                    <VscHeart />
+                                    {/* <div className="smtitle">Хадгалах</div> */}
                                 </a>
                             </Link>
 
                             <Link href="/login">
                                 <a className="content">
                                     <span className="icon login" />
-                                    <div className={`smtitle ${userInfo.id?`addName`:``}`}>{userInfo.id?userInfo.username:`Нэвтрэх`}</div>
+                                    {/* <div className={`smtitle ${userInfo.id?`addName`:``}`}>{userInfo.id?userInfo.username:`Нэвтрэх`}</div> */}
                                 </a>
                             </Link>
+
+                            <Link href="/cart">
+                                <a className="content">
+                                    {cartItems.length?<div className="cartCount">{cartItems.length}</div>:null}
+                                    <span className="icon shop" />
+                                    {/* <div className="smtitle">Сагс</div> */}
+                                </a>
+                            </Link>
+                            
                         </>}
                             
                         {/* {menu.map((el,ind)=>{
@@ -214,7 +225,7 @@ const Container = styled.div`
                         // color: rgb(102, 102, 102);
                         color: #fff;
                         font-size: 13px;
-                        font-weight: 400;
+                        font-weight: 300;
                         margin-top: 2px;
                     }
                     .addName{
@@ -224,9 +235,9 @@ const Container = styled.div`
                         text-overflow: ellipsis;
                     }
                     .icon{
-                        width: 25px;
-                        height: 25px;
-                        background-size: 25px;
+                        width: 23px;
+                        height: 23px;
+                        background-size: 23px;
                         background-position: center center;
                         background-repeat: no-repeat;
                         transition: all 200ms ease-in-out 0s;
@@ -237,7 +248,10 @@ const Container = styled.div`
                     .shop{
                         background-image: url('/img/shop2.svg');
                     }
-    
+                    svg{
+                        font-size:23px;
+                        color:#fff;
+                    }
                 }
             }
             .searchBar{

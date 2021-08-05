@@ -12,8 +12,8 @@ const Products = ({ data }) => {
     const [ images, setImages ] = useState({});
 
     useEffect(()=>{
-        if(data.image.length!==0){
-            setImages(data.image[0]);
+        if(data.image?.length!==0){
+            setImages(data?.image[0]);
         }
     },[data])
  
@@ -27,7 +27,7 @@ const Products = ({ data }) => {
                 <div className="imageParent">
                     <div className="smImages">
                         <div className="absolutePar">
-                            {data.image.map((el,ind)=>{
+                            {data.image?.map((el,ind)=>{
                                 return(
                                     <div onClick={()=>setImages(el)} key={ind} className="imgPar">
                                         <img src={minimize(el, "thumbnail")} alt="e-shop" />
