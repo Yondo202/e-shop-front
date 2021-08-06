@@ -10,8 +10,8 @@ module.exports = (phase) => {
         user: "user_info",
         serverUrl:(()=>{
             if(isDev) return 'http://localhost:1338'
-            if(isProd) return 'https://716a633fbd14.ngrok.io'
-            if(isSTaging) return 'https://716a633fbd14.ngrok.io'
+            if(isProd) return 'https://6a43f8088d68.ngrok.io'
+            if(isSTaging) return 'https://6a43f8088d68.ngrok.io'
             // if(isProd) return 'http://192.168.88.232:1338'
             // if(isSTaging) return 'http://192.168.88.232:1338'
         })(),

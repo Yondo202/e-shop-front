@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 const MenuContext = React.createContext();
-import { setCookie, getCookie } from "@/miscs/useCookie";
+import { getCookie } from "@/miscs/useCookie";
 import { DeleteHandle2, listenCart2 } from "@/miscs/AddCart"
 // const MenuProvider = MenuContext.Provider
 // const MenuConsumer = MenuContext.Consumer
@@ -43,7 +43,7 @@ export const MenuStore = (props) =>{
     }
 
     const listenCart = (data, count) => {
-        listenCart2(data, count, cartItems, setCond, setCartAdd );
+        listenCart2(data, count, cartItems, setCond, setCartAdd, alertFunc );
     }
 
     const DeleteHandle = (data) =>{

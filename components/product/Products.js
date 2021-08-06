@@ -20,6 +20,8 @@ const Products = ({ data }) => {
     const AddCartHandle =_=>{
         listenCart(data, addCount);
     }
+
+    console.log(`data`, data);
     
     return (
         <Container className="row">
