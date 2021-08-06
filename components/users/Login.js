@@ -61,7 +61,7 @@ const login = ({setListen}) => {
 
     const RegisterGmailHandle = () =>{
         setListen(true);
-        var myWindow = window.open("https://be31fc9a76dd.ngrok.io/connect/google", "myWindow", "resizable=yes,top=160,left=700,width=500,height=600");
+        var myWindow = window.open(`${process.env.serverUrl}/connect/google`, "myWindow", "resizable=yes,top=160,left=700,width=500,height=600");
         myWindow.focus();
     }
 

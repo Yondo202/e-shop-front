@@ -21,9 +21,6 @@ const InitialCard = ({data, center, catigory}) => {
         listenCart(data, 1);
     }
 
-   
-
-
     return (
             <Container>
                 <div className={catigory?`Parent ParentCat`:`Parent`}>

@@ -14,7 +14,7 @@ const callback = () => {
     },[router.query.id_token])
 
     const provide = async () =>{
-       await Axios.get(`https://716a633fbd14.ngrok.io/auth/google/callback?access_token=${router.query.access_token}`).then(res=>{
+       await Axios.get(`${process.env.serverUrl}/auth/google/callback?access_token=${router.query.access_token}`).then(res=>{
             if(res.data){
                 setCookie("jwt", res.data?.jwt);
                 setCookie(process.env.user, res.data?.user);
