@@ -14,14 +14,14 @@ import { VscChromeClose } from "react-icons/vsc"
             setCname(true);
             setTimeout(() => {
                 setShowModal({cond:false});
-            }, 350)
+            }, 280)
         }
     }
     const handleClicks = () =>{
         setCname(true);
         setTimeout(() => {
             setShowModal({cond:false});
-        }, 350)
+        }, 280)
     }
 
     return (
@@ -38,12 +38,12 @@ import { VscChromeClose } from "react-icons/vsc"
 export default ModalCard;
 
 const animate = keyframes`
-    0%{ transform:translateY(-15px); opacity:0; }
-    100%{ transform:translateY(0); opacity:1; }
+    0%{ transform:scale(0.7); opacity:0; }
+    100%{ transform:scale(1); opacity:1; }
 `
 const animate2 = keyframes`
-    0%{ transform:translateY(0); opacity:1; }
-    100%{ transform:translateY(-15px); opacity:0; }
+    0%{ transform:scale(1); opacity:1; }
+    100%{ transform:scale(0.7); opacity:0; }
 `
 
 const Container = styled.div`
@@ -58,7 +58,7 @@ const Container = styled.div`
     justify-content:center;
     align-items:center;
     .contentParent{
-        animation:${animate} 0.4s ease;
+        animation:${animate} 0.3s ease;
         padding: 4.3rem 4.2rem 2rem;
         position:relative;
         .ClosePar{
@@ -80,6 +80,6 @@ const Container = styled.div`
         }
     }
     .Animate{
-        animation:${animate2} 0.4s ease;
+        animation:${animate2} 0.3s ease;
     }
 `

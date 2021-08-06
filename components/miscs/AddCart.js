@@ -1,7 +1,6 @@
 import { setCookie, getCookie } from "@/miscs/useCookie";
 
 export const listenCart2 = (data, count, cartItems, setCond, setCartAdd, alertFunc) => {
-
     
     if(cartItems.length!==0){
         let result = [];
@@ -62,4 +61,4 @@ export const DeleteHandle2 = (data, setCond) =>{
     setCond(prev=>!prev);
 }
 
-// alertFunc('orange', 'Барааны үлдэгдэл хүрэлцэхгүй байна.', true);
+

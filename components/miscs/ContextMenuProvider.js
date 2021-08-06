@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 const MenuContext = React.createContext();
 import { getCookie } from "@/miscs/useCookie";
 import { DeleteHandle2, listenCart2 } from "@/miscs/AddCart"
+import { SaveProduct } from "@/miscs/SaveProduct"
 // const MenuProvider = MenuContext.Provider
 // const MenuConsumer = MenuContext.Consumer
 
@@ -14,6 +15,7 @@ export const MenuStore = (props) =>{
     const [ cartItems, setCardItems ] = useState([]);
     const [ showModal, setShowModal ] = useState({ data:{}, cond:false });
     const [ cartAdd, setCartAdd ] = useState({ data:{}, cond:false });
+    const [ saveProduct, setSaveProduct ] = useState([]);
 
     useEffect(()=>{
         // config = {width: window.innerWidth, height: window.innerHeight};
@@ -50,9 +52,14 @@ export const MenuStore = (props) =>{
         DeleteHandle2(data, setCond);
     }
 
+    const SaveHandle = (data) =>{
+        SaveProduct(data, saveProduct, setSaveProduct);
+    }
+
+    console.log(`saveProduct`, saveProduct);
 
     return(
-        <MenuContext.Provider value={{ config, ...props.value, listenCart, cartItems, DeleteHandle, alert, alertFunc, showModal, setShowModal, HandleModal, cartAdd, setCartAdd}} >
+        <MenuContext.Provider value={{ config, ...props.value, listenCart, cartItems, DeleteHandle, alert, alertFunc, showModal, setShowModal, HandleModal, cartAdd, setCartAdd , SaveHandle}} >
             {props.children}
         </MenuContext.Provider>
     )

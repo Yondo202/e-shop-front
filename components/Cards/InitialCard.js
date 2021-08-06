@@ -8,7 +8,7 @@ import { AiOutlineSearch } from "react-icons/ai"
 import { FiHeart } from "react-icons/fi"
 
 const InitialCard = ({data, center, catigory}) => {
-    const { listenCart, HandleModal } = useContext(Ctx);
+    const { listenCart, HandleModal, SaveHandle } = useContext(Ctx);
     const router = useRouter();
     const [mouseMoved, setMouseMoved] = useState(false);
 
@@ -20,6 +20,9 @@ const InitialCard = ({data, center, catigory}) => {
     const AddCart = () =>{
         listenCart(data, 1);
     }
+
+   
+
 
     return (
             <Container>
@@ -34,7 +37,7 @@ const InitialCard = ({data, center, catigory}) => {
                             <div onClick={AddCart} className="addCard">Сагсанд хийх</div>
                             <div className="rightIcons">
                                 <div onClick={()=>HandleModal(data, true)} className="iconPar"><AiOutlineSearch /></div>
-                                <div className="iconPar"><FiHeart /></div>
+                                <div onClick={()=>SaveHandle(data)} className="iconPar"><FiHeart /></div>
                             </div>
                         </div>
                         <div className={`textPar`}>
