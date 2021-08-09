@@ -26,7 +26,7 @@ const login = () => {
     return (
         <Root>
             <Container>
-                <div style={showLogin?{width:`32em`}:{width:`32em`}} className="ContentSector">
+                <div className="ContentSector">
                     <div className="header">
                         <div onClick={()=>setShowLogin(true)} className={`item ${showLogin&&`Active`}`}>Нэвтрэх</div>
                         <div onClick={()=>setShowLogin(false)}  className={`item ${!showLogin&&`Active`}`}>Бүртгүүлэх</div>
@@ -51,7 +51,7 @@ const Animate2 = keyframes`
 `
 
 const Container = styled.div`
-    height: 80vh;
+    height: 90vh;
     background: url("/img/background.jpg") no-repeat;
     background-size: 100% 100%;
     padding-top: 25px;
@@ -65,8 +65,8 @@ const Container = styled.div`
         box-shadow:1px 1px 25px -17px;
         transition: all 0.2s ease;
         background-color: #ffffff;
-        height: 36em;
-        width: 35em;
+        height: 39em;
+        width: 37em;
         border-radius: 10px;
         padding: 3em 4em;
         letter-spacing: 0px;
@@ -75,7 +75,7 @@ const Container = styled.div`
             animation: ${Animate} 0.4s ease;
             /* display: flex; */
             .buttonPar{
-                margin-top:15px;
+                margin-top:20px;
                 .ErrTxt{
                     animation: ${Animate} 0.4s ease;
                     margin-bottom: 15px;

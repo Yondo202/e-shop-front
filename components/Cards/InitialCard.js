@@ -1,5 +1,7 @@
 import React,{ useState, useContext } from 'react'
+import Router from "next/router"
 import styled from 'styled-components'
+import { getCookie } from "@/miscs/useCookie";
 import Ctx from "@/miscs/ContextMenuProvider";
 import minimize from "@/miscs/minimize"
 import { NumberComma } from "components/miscs/NumberComma"
@@ -8,7 +10,7 @@ import { AiOutlineSearch } from "react-icons/ai"
 import { FiHeart } from "react-icons/fi"
 
 const InitialCard = ({data, center, catigory}) => {
-    const { listenCart, HandleModal, SaveHandle } = useContext(Ctx);
+    const { listenCart, HandleModal, SaveHandle, alertFunc } = useContext(Ctx);
     const router = useRouter();
     const [mouseMoved, setMouseMoved] = useState(false);
 
@@ -19,6 +21,16 @@ const InitialCard = ({data, center, catigory}) => {
     }
     const AddCart = () =>{
         listenCart(data, 1);
+    }
+
+    const SaveProduct = (data) =>{
+        let user = getCookie('user_info');
+        if(user.id){
+            SaveHandle(data);
+        }else{
+            alertFunc('orange', "Нэвтэрсэн байх шаардлагатай!", true);
+            Router.push('/login');
+        }
     }
 
     return (
@@ -34,7 +46,7 @@ const InitialCard = ({data, center, catigory}) => {
                             <div onClick={AddCart} className="addCard">Сагсанд хийх</div>
                             <div className="rightIcons">
                                 <div onClick={()=>HandleModal(data, true)} className="iconPar"><AiOutlineSearch /></div>
-                                <div onClick={()=>SaveHandle(data)} className="iconPar"><FiHeart /></div>
+                                <div onClick={()=>SaveProduct(data)} className="iconPar"><FiHeart /></div>
                             </div>
                         </div>
                         <div className={`textPar`}>

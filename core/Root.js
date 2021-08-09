@@ -16,7 +16,7 @@ import ModalCard from "@/components/Cards/ModalCard"
 import CartNotification from "@/components/Cards/CartNotification"
 
 export default function Root(props) {
-    const { headerMenu, logo, footerMenu, alert, cartItems, config , showModal, setShowModal, cartAdd , setCartAdd} = useContext(MenuContext);
+    const { headerMenu, logo, footerMenu, alert, cartItems, config , showModal, setShowModal, cartAdd , setCartAdd , saveProduct} = useContext(MenuContext);
     const [ showBtn, setShowBtn ] = useState(false);
 
     React.useEffect(()=>{
@@ -42,7 +42,7 @@ export default function Root(props) {
         <Body>
             <PreSeo seo={props.seo}/>
             <TopLoad Router={Router} />
-            <HeaderTop menu={headerMenu || []} logo={logo} config={config} cartItems={cartItems}/>
+            <HeaderTop menu={headerMenu || []} logo={logo} config={config} saveProduct={saveProduct} cartItems={cartItems}/>
             <Header menu={headerMenu || []}/>
                 {props.children}
             <MessengerCustomerChat pageId="104975931248820" appId="1410175519375837" />

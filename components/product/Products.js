@@ -21,8 +21,6 @@ const Products = ({ data }) => {
         listenCart(data, addCount);
     }
 
-    console.log(`data`, data);
-    
     return (
         <Container className="row">
             <div className="col-md-6">

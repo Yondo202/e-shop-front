@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from "next/router"
 import Axios from 'axios';
 import { setCookie } from "@/miscs/useCookie";

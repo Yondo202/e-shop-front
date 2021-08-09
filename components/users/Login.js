@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { FaRegUser } from "react-icons/fa"
 import { BiLock } from "react-icons/bi"
 import { BsEye, BsEyeSlash } from "react-icons/bs"
 import { LoadingStyle } from '../miscs/CustomComp'
-import { ButtonStyleTwo } from "@/miscs/CustomStyle"
-import { FaGooglePlusG } from "react-icons/fa"
+import { ButtonStyleTwo, ButtonStyleOne } from "@/miscs/CustomStyle"
+import { FaRegUser } from "react-icons/fa"
+import { VscMail } from "react-icons/vsc"
+import { SiFacebook } from "react-icons/si"
 import { InputParent } from "./SignUp"
 import Router from "next/router"
 import axios from "axios"
 import { setCookie } from "@/miscs/useCookie";
+import styled from 'styled-components'
 
 const login = ({setListen}) => {
     const [ showPass, setShowPass ] = useState(false);
@@ -65,6 +67,12 @@ const login = ({setListen}) => {
         myWindow.focus();
     }
 
+    const RegisterFacebookHandle = () =>{
+        setListen(true);
+        var myWindow = window.open(`https://deec55aa2eed.ngrok.io/connect/facebook`, "myWindow", "resizable=yes,top=160,left=700,width=500,height=600");
+        myWindow.focus();
+    }
+
     return (
         <form onSubmit={ClickHandle}>
             <InputParent className="InputParent">
@@ -99,7 +107,11 @@ const login = ({setListen}) => {
                 </div>
 
                 <div className="or"><span>Эсвэл</span></div>
-                <ButtonStyleTwo onClick={RegisterGmailHandle} type="button" className="custom"><FaGooglePlusG /> Gmail - ээр нэвтрэх</ButtonStyleTwo>
+                <SocialButtons >
+                    <ButtonStyleTwo onClick={RegisterGmailHandle} type="button" className="custom"><VscMail /> Gmail - ээр нэвтрэх</ButtonStyleTwo>
+                    <ButtonStyleOne facebook={true} onClick={RegisterFacebookHandle} type="button" className="custom"><SiFacebook /> facebook - ээр нэвтрэх</ButtonStyleOne>
+                </SocialButtons>
+                
                 {loading?<LoadingStyle> <img src="/img/giff.gif" alt="eshop-giff" /></LoadingStyle>:<></>}
             </InputParent>
         </form>
@@ -108,3 +120,9 @@ const login = ({setListen}) => {
 }
 
 export default login;
+
+const SocialButtons = styled.div`
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+`

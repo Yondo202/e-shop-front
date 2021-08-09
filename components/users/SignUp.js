@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { BiLock } from "react-icons/bi"
 import { AiOutlineMail } from "react-icons/ai"
-import { FaGooglePlusG } from "react-icons/fa"
 import { BsEye, BsEyeSlash } from "react-icons/bs"
 import { LoadingStyle } from '../miscs/CustomComp'
-import { ButtonStyleTwo } from "@/miscs/CustomStyle"
+import { ButtonStyleTwo, ButtonStyleOne } from "@/miscs/CustomStyle"
 import styled from 'styled-components'
 import Router from "next/router"
 import axios from "axios"
 import { setCookie } from "@/miscs/useCookie";
+import { VscMail } from "react-icons/vsc"
+import { SiFacebook } from "react-icons/si"
 
 
 const SignUp = ({ setListen }) => {
@@ -16,7 +17,6 @@ const SignUp = ({ setListen }) => {
     const [ errText, setErrText ] = useState('Мэдээллээ гүйцэд оруулна уу');
     const [ showErr, setShowErr ] = useState(false);
     const [ loading, setLoading ] = useState(false);
-    const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ email, setEmail ] = useState('');
 
@@ -72,7 +72,13 @@ const SignUp = ({ setListen }) => {
         // const newWindow = window.open(`https://716a633fbd14.ngrok.io/connect/google`, '_blank', 'noopener,noreferrer')
         // if (newWindow) newWindow.opener = null
         setListen(true);
-        var myWindow = window.open(`${process.env.serverUrl}/connect/google`, "myWindow", "resizable=yes,top=160,left=700,width=500,height=600");
+        var myWindow = window.open(`https://deec55aa2eed.ngrok.io/connect/google`, "myWindow", "resizable=yes,top=160,left=700,width=500,height=600");
+        myWindow.focus();
+    }
+
+    const RegisterFacebookHandle = () =>{
+        setListen(true);
+        var myWindow = window.open(`https://deec55aa2eed.ngrok.io/connect/facebook`, "myWindow", "resizable=yes,top=160,left=700,width=500,height=600");
         myWindow.focus();
     }
 
@@ -112,7 +118,13 @@ const SignUp = ({ setListen }) => {
                 </div>
 
                 <div className="or"><span>Эсвэл</span></div>
-                <ButtonStyleTwo onClick={RegisterGmailHandle} type="button" className="custom"><FaGooglePlusG /> Gmail - ээр бүртгүүлэх</ButtonStyleTwo>
+                {/* <ButtonStyleTwo onClick={RegisterGmailHandle} type="button" className="custom"><FaGooglePlusG /> Gmail - ээр бүртгүүлэх</ButtonStyleTwo> */}
+
+                <SocialButtons >
+                    <ButtonStyleTwo onClick={RegisterGmailHandle} type="button" className="custom"><VscMail /> Gmail - ээр бүртгүүлэх</ButtonStyleTwo>
+                    <ButtonStyleOne facebook={true} onClick={RegisterFacebookHandle} type="button" className="custom"><SiFacebook /> facebook - ээр бүртгүүлэх</ButtonStyleOne>
+                </SocialButtons>
+
                 {loading?<LoadingStyle> <img src="/img/giff.gif" alt="eshop-giff" /></LoadingStyle>:<></>}
             </InputParent>
         </form>
@@ -122,6 +134,12 @@ const SignUp = ({ setListen }) => {
 
 export default SignUp;
 
+const SocialButtons = styled.div`
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+`
+
 export const InputParent = styled.div`
     .custom{
         font-size:14px;
@@ -129,7 +147,7 @@ export const InputParent = styled.div`
     }
     .or{
         position:relative;
-        margin:10px 0px;
+        margin:14px 0px;
         display:flex;
         justify-content:center;
         &::after{

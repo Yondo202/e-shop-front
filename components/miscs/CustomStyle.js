@@ -2,11 +2,11 @@ import styled from "styled-components"
 
 export const ButtonStyleOne = styled.button`
     letter-spacing:0.2px;
-    background-color:${props=>props.theme.buttonColor};
+    background-color:${props=>props.facebook?'#3b5998':props.theme.buttonColor};
     color:white;
     font-weight:500;
     border:none;
-    padding: 8px 15px;
+    padding:${props=>props.facebook?`10px 15px`:`8px 15px`} ;
     margin-right: 12px;
     flex:1 1 40%;
     // border-radius:5px;
@@ -15,6 +15,12 @@ export const ButtonStyleOne = styled.button`
     outline: 1px solid #ffffff;
     transition: outline-offset 250ms ease;
     width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-evenly;
+    svg{
+        font-size:22px;
+    }
     &:hover,
     &:focus{
         outline-offset: -6px;
@@ -28,7 +34,6 @@ export const ButtonStyleTwo = styled.button`
     padding: 8px 20px;
     margin-right: 12px;
     flex:1 1 40%;
-    // border-radius:5px;
     outline:none;
     height: 40px;
     background-color:#ffffff;

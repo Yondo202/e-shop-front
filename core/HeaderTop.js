@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Link from "next/link";
 import Axios from 'axios';
+import SavedProducts from '@/components/product/SavedProducts';
 import Highlighter from "react-highlight-words";
 import HamburgerMenu from "react-hamburger-menu";
 import {MainMenu} from "@/components/Mobile/MainMenu";
@@ -13,9 +14,10 @@ import { IoIosArrowForward } from 'react-icons/io';
 import { FaPenNib } from 'react-icons/fa';
 import { GiEntryDoor  } from 'react-icons/gi';
  
-const MenuTop = ({ menu, logo, cartItems, config }) => {
+const MenuTop = ({ menu, logo, cartItems, config, saveProduct, setSavesCond }) => {
     const router = useRouter();
     const [ open, setOpen ] = useState(false);
+    const [ Saved, setSaved ] = useState(false)
     const [ inp, setInp ] = useState('');
     const [ search, setSearch ] = useState([]);
     const [ showProfile, setShowProfile] = useState(false);
@@ -122,7 +124,7 @@ const MenuTop = ({ menu, logo, cartItems, config }) => {
                                     <Link href="/cart">
                                         <a className="content">
                                             {cartItems.length?<div className="cartCount">{cartItems.length}</div>:null}
-                                            <span className="icon shop" />
+                                            <span className="icon heart" />
                                             {/* <div className="smtitle">Сагс</div> */}
                                         </a>
                                     </Link>
@@ -143,14 +145,18 @@ const MenuTop = ({ menu, logo, cartItems, config }) => {
                                     </div>
                                 </>
                             ):<>
-                            <Link href="/login">
-                                <a className="content">
-                                    {/* {cartItems.length?<div className="cartCount">{cartItems.length}</div>:null} */}
-                                    {/* <span className="icon shop" /> */}
-                                    <VscHeart />
-                                    {/* <div className="smtitle">Хадгалах</div> */}
-                                </a>
-                            </Link>
+
+                            {userInfo.id?
+                                    <div onClick={()=>setSaved(true)} className="content heart">
+                                        {saveProduct.length?<div className="cartCount">{saveProduct.length}</div>:null}
+                                        <VscHeart />
+                                    </div>
+                                :<Link href="/login">
+                                    <a className="content heart">
+                                        {/* {cartItems.length?<div className="cartCount">{saveProduct.length}</div>:null} */}
+                                        <VscHeart />
+                                    </a>
+                            </Link>}
 
                             <Link href="/cart">
                                 <a className="content">
@@ -169,7 +175,7 @@ const MenuTop = ({ menu, logo, cartItems, config }) => {
                                     {showProfile && <div onMouseEnter={() => { setShowProfile(true);}} onMouseLeave={() => { setShowProfile(false); }} className="ghost">
                                                         <div className="HoverContent">
                                             <div className="UserInfo"> <img src="/img/user1.svg" alt="user.svg" /> <span className="name">{userInfo?.username}</span> </div>
-                                            <Link onClick={closeHandle} href="/" >
+                                            <Link onClick={closeHandle} href="/">
                                                 <a className="resPass">
                                                     <div className="initList"><div className="svg"><FaPenNib /></div><span>Хэрэглэгчийн мэдээлэл</span></div>
                                                     <div className="svgOther"><IoIosArrowForward /> </div>
@@ -189,6 +195,7 @@ const MenuTop = ({ menu, logo, cartItems, config }) => {
                     </div>
                 </div>
             </div>
+            {Saved?<SavedProducts userInfo={userInfo} setSaved={setSaved} />:null}
             {config.width<768?<MainMenu open={open} menu={menu} setOpen={setOpen} />:null}
         </Container>
     )
@@ -291,6 +298,16 @@ const Container = styled.div`
                     }
                     .ghost{
                         display:none;
+                    }
+                }
+                .heart{
+                    svg{
+                        font-size:26px;
+                        color:#fff;
+                    }
+                    .cartCount{
+                        right: -5px;
+                        top: -3px;
                     }
                 }
                 .Active{
