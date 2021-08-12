@@ -69,7 +69,7 @@ const login = ({setListen}) => {
 
     const RegisterFacebookHandle = () =>{
         setListen(true);
-        var myWindow = window.open(`https://deec55aa2eed.ngrok.io/connect/facebook`, "myWindow", "resizable=yes,top=160,left=700,width=500,height=600");
+        var myWindow = window.open(`https://8e6697b66944.ngrok.io/connect/facebook`, "myWindow", "resizable=yes,top=160,left=700,width=500,height=600");
         myWindow.focus();
     }
 
