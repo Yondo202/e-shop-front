@@ -72,13 +72,13 @@ const SignUp = ({ setListen }) => {
         // const newWindow = window.open(`https://716a633fbd14.ngrok.io/connect/google`, '_blank', 'noopener,noreferrer')
         // if (newWindow) newWindow.opener = null
         setListen(true);
-        var myWindow = window.open(`https://8e6697b66944.ngrok.io/connect/google`, "myWindow", "resizable=yes,top=160,left=700,width=500,height=600");
+        var myWindow = window.open(`https://fdc011f73568.ngrok.io/connect/google`, "myWindow", "resizable=yes,top=160,left=700,width=500,height=600");
         myWindow.focus();
     }
 
     const RegisterFacebookHandle = () =>{
         setListen(true);
-        var myWindow = window.open(`https://8e6697b66944.ngrok.io/connect/facebook`, "myWindow", "resizable=yes,top=160,left=700,width=500,height=600");
+        var myWindow = window.open(`https://fdc011f73568.ngrok.io/connect/facebook`, "myWindow", "resizable=yes,top=160,left=700,width=500,height=600");
         myWindow.focus();
     }
 
